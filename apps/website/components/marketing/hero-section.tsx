@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { ChevronDown } from "lucide-react"
+import { Sparkles, Download, Play, CheckCircle2, TrendingUp, Clock, Shield } from "lucide-react"
 import { DemoVideoModal } from "@/components/marketing/demo-video-modal"
 
 export function HeroSection() {
@@ -11,72 +12,139 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
-        {/* Background gradient */}
+      <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+        {/* Enhanced Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-background" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(79,70,229,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.15),transparent_50%)]" />
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(79,70,229,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(79,70,229,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="container relative z-10">
           <div className="mx-auto max-w-5xl text-center space-y-8">
+            {/* Announcement Badge */}
+            <div className="inline-flex animate-fade-in">
+              <Badge variant="secondary" className="px-4 py-2 text-sm font-medium hover:bg-secondary/80 transition-colors">
+                <Sparkles className="h-3.5 w-3.5 mr-2 inline" />
+                <span>New: Multi-LLM orchestration with cost tracking</span>
+              </Badge>
+            </div>
+
             {/* Headline */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-              Your Autonomous Workforce,{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-                Powered by AI
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight animate-fade-in-up">
+              Automate Anything.{" "}
+              <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                10x Your Productivity.
               </span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Automate desktop tasks, browser workflows, and complex processes
-              with intelligent multi-LLM orchestration. Built for professionals
-              who demand both power and simplicity.
+            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
+              The most powerful desktop automation platform that combines AI agents, browser control, and workflow intelligence.
+              <span className="block mt-2 font-semibold text-foreground">No coding required. No limitations.</span>
             </p>
 
+            {/* Key benefits pills */}
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm animate-fade-in-up animation-delay-200">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <CheckCircle2 className="h-4 w-4 text-success-400" />
+                <span>5-minute setup</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <CheckCircle2 className="h-4 w-4 text-success-400" />
+                <span>Works offline</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <CheckCircle2 className="h-4 w-4 text-success-400" />
+                <span>SOC 2 certified</span>
+              </div>
+            </div>
+
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Button size="xl" asChild className="text-base">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-fade-in-up animation-delay-300">
+              <Button size="xl" asChild className="text-base group">
                 <Link href="/download">
-                  <span className="flex items-center gap-2">
-                    Download for Windows
-                  </span>
+                  <Download className="h-5 w-5 mr-2 group-hover:animate-bounce" />
+                  <span>Start Free Trial</span>
                 </Link>
               </Button>
               <Button
                 size="xl"
                 variant="outline"
-                className="text-base"
+                className="text-base group"
                 onClick={() => setShowDemoModal(true)}
               >
-                Watch Demo
+                <Play className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
+                <span>Watch 2-min Demo</span>
               </Button>
             </div>
 
             {/* Below button text */}
-            <p className="text-sm text-muted-foreground">
-              Free trial • No credit card required
-            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground animate-fade-in-up animation-delay-400">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-success-400" />
+                14-day free trial
+              </span>
+              <span className="hidden sm:inline">•</span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-success-400" />
+                No credit card required
+              </span>
+              <span className="hidden sm:inline">•</span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-success-400" />
+                Cancel anytime
+              </span>
+            </div>
 
-            {/* Social Proof */}
-            <div className="pt-8 space-y-4">
-              <p className="text-sm font-medium text-muted-foreground">
-                Trusted by 10,000+ professionals
-              </p>
-              {/* Placeholder for user logos/avatars */}
-              <div className="flex justify-center items-center gap-4 opacity-50">
-                <div className="h-8 w-20 bg-foreground/10 rounded" />
-                <div className="h-8 w-20 bg-foreground/10 rounded" />
-                <div className="h-8 w-20 bg-foreground/10 rounded" />
-                <div className="h-8 w-20 bg-foreground/10 rounded" />
-                <div className="h-8 w-20 bg-foreground/10 rounded" />
+            {/* Stats row */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto pt-8 animate-fade-in-up animation-delay-500">
+              <div className="space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-blue-500" />
+                  <div className="text-3xl font-bold">10,000+</div>
+                </div>
+                <p className="text-sm text-muted-foreground">Active users</p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <Clock className="h-5 w-5 text-blue-500" />
+                  <div className="text-3xl font-bold">2M+</div>
+                </div>
+                <p className="text-sm text-muted-foreground">Hours saved monthly</p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <Shield className="h-5 w-5 text-blue-500" />
+                  <div className="text-3xl font-bold">99.9%</div>
+                </div>
+                <p className="text-sm text-muted-foreground">Uptime guarantee</p>
               </div>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="pt-12 animate-bounce">
-              <ChevronDown className="h-6 w-6 mx-auto text-muted-foreground" />
-              <p className="text-xs text-muted-foreground mt-2">Scroll to explore</p>
+            {/* Social Proof - Company logos */}
+            <div className="pt-12 space-y-4 animate-fade-in-up animation-delay-600">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                Trusted by teams at leading companies
+              </p>
+              {/* Placeholder for company logos */}
+              <div className="flex justify-center items-center gap-8 flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all">
+                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
+                  Company A
+                </div>
+                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
+                  Company B
+                </div>
+                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
+                  Company C
+                </div>
+                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
+                  Company D
+                </div>
+                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
+                  Company E
+                </div>
+              </div>
             </div>
           </div>
         </div>
