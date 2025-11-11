@@ -13,10 +13,21 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import type { Metadata } from "next"
+import { ContactForm } from "@/components/forms/contact-form"
 
 export const metadata: Metadata = {
-  title: "Enterprise - AGI Workforce | Scalable Team Automation",
+  title: "Enterprise - Scalable Team Automation",
   description: "Enterprise-grade automation for teams of any size. Deploy securely, manage centrally, automate confidently. SOC 2 compliant with dedicated support.",
+  openGraph: {
+    title: "AGI Workforce Enterprise - Scalable Team Automation",
+    description: "Enterprise-grade automation with advanced security, centralized management, and dedicated support. SOC 2 compliant.",
+    url: "https://agiworkforce.com/enterprise",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AGI Workforce Enterprise - Scalable Team Automation",
+    description: "Enterprise-grade automation with advanced security and dedicated support. SOC 2 compliant.",
+  },
 }
 
 export default function EnterprisePage() {
@@ -287,23 +298,14 @@ export default function EnterprisePage() {
 
             <Card className="border-2">
               <CardContent className="pt-6">
-                <div className="space-y-6">
-                  <p className="text-center text-muted-foreground">
-                    Enterprise contact form will be implemented with form handling.
+                <ContactForm />
+                <div className="mt-8 pt-8 border-t text-center space-y-4">
+                  <p className="text-sm text-muted-foreground">
+                    For immediate assistance, contact our enterprise team:
                   </p>
-                  <div className="text-center space-y-4">
-                    <p className="text-sm text-muted-foreground">
-                      For immediate assistance, contact our enterprise team:
-                    </p>
-                    <div className="space-y-2">
-                      <p className="font-medium">enterprise@agiworkforce.com</p>
-                      <p className="font-medium">+1 (555) 123-4567</p>
-                    </div>
-                    <Button size="lg" asChild className="w-full">
-                      <Link href="mailto:enterprise@agiworkforce.com">
-                        Email Enterprise Sales
-                      </Link>
-                    </Button>
+                  <div className="space-y-2">
+                    <p className="font-medium">enterprise@agiworkforce.com</p>
+                    <p className="font-medium">+1 (555) 123-4567</p>
                   </div>
                 </div>
               </CardContent>

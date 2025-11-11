@@ -3,8 +3,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Changelog - AGI Workforce",
+  title: "Changelog - What's New",
   description: "See what's new in AGI Workforce. Track new features, improvements, bug fixes, and security updates.",
+  openGraph: {
+    title: "AGI Workforce Changelog - What's New",
+    description: "Track new features, improvements, bug fixes, and security updates for AGI Workforce.",
+    url: "https://agiworkforce.com/changelog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AGI Workforce Changelog - What's New",
+    description: "Track new features, improvements, bug fixes, and security updates.",
+  },
 }
 
 export default function ChangelogPage() {

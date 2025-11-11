@@ -19,8 +19,18 @@ import Link from "next/link"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Features - AGI Workforce",
+  title: "Features - Powerful Automation Tools",
   description: "Explore all the powerful features of AGI Workforce. Visual automation builder, browser control, desktop automation, multi-LLM orchestration, and more.",
+  openGraph: {
+    title: "AGI Workforce Features - Powerful Automation Tools",
+    description: "Visual workflow builder, multi-LLM orchestration, browser automation, desktop control, and more. Automate anything.",
+    url: "https://agiworkforce.com/features",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AGI Workforce Features - Powerful Automation Tools",
+    description: "Visual workflow builder, multi-LLM orchestration, browser automation, and more.",
+  },
 }
 
 export default function FeaturesPage() {

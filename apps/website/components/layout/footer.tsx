@@ -3,11 +3,23 @@ import { Github, Linkedin, Twitter, Youtube } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { ThemeToggle } from "@/components/layout/theme-toggle"
+import { NewsletterForm } from "@/components/forms/newsletter-form"
 
 export function Footer() {
   return (
     <footer className="border-t bg-background">
       <div className="container py-12 md:py-16">
+        {/* Newsletter Section */}
+        <div className="mb-12 pb-12 border-b">
+          <div className="max-w-md mx-auto text-center space-y-4">
+            <h3 className="text-lg font-semibold">Stay Updated</h3>
+            <p className="text-sm text-muted-foreground">
+              Get the latest updates on new features and automation tips.
+            </p>
+            <NewsletterForm />
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           {/* Company */}
           <div className="space-y-3">

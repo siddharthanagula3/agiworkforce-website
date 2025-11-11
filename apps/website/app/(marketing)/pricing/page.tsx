@@ -10,10 +10,22 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import Script from "next/script"
+import { getFAQSchema } from "@/lib/structured-data"
 
 export const metadata: Metadata = {
-  title: "Pricing - AGI Workforce | $10/month (50% Off First Month)",
+  title: "Pricing - $10/month (50% Off First Month)",
   description: "Transparent pricing starting at $10/month with 50% off your first month. Free tier available. No credit card required for trial.",
+  openGraph: {
+    title: "AGI Workforce Pricing - $10/month (50% Off First Month)",
+    description: "Start free, upgrade when ready. All plans include 50% off first month. No credit card required.",
+    url: "https://agiworkforce.com/pricing",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AGI Workforce Pricing - $10/month (50% Off First Month)",
+    description: "Start free, upgrade when ready. All plans include 50% off first month.",
+  },
 }
 
 export default function PricingPage() {
@@ -70,8 +82,16 @@ export default function PricingPage() {
     }
   ]
 
+  const faqSchema = getFAQSchema(pricingFAQ)
+
   return (
-    <div className="flex flex-col">
+    <>
+      <Script
+        id="pricing-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="flex flex-col">
       {/* Hero */}
       <section className="py-20 md:py-32">
         <div className="container">
@@ -283,6 +303,7 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }
