@@ -2,11 +2,14 @@ import { HeroSection } from "@/components/marketing/hero-section"
 import { SocialProofSection } from "@/components/marketing/social-proof-section"
 import { CoreValuesSection } from "@/components/marketing/core-values-section"
 import { FeaturesSection } from "@/components/marketing/features-section"
+import { IntegrationsSection } from "@/components/marketing/integrations-section"
 import { UseCasesSection } from "@/components/marketing/use-cases-section"
 import { HowItWorksSection } from "@/components/marketing/how-it-works-section"
 import { ComparisonSection } from "@/components/marketing/comparison-section"
+import { ROICalculator } from "@/components/marketing/roi-calculator"
 import { PricingSection } from "@/components/marketing/pricing-section"
 import { TestimonialsSection } from "@/components/marketing/testimonials-section"
+import { TrustBadgesSection } from "@/components/marketing/trust-badges-section"
 import { FAQSection } from "@/components/marketing/faq-section"
 import { FinalCTASection } from "@/components/marketing/final-cta-section"
 import Script from "next/script"
@@ -80,11 +83,14 @@ export default function HomePage() {
         <SocialProofSection />
         <CoreValuesSection />
         <FeaturesSection />
+        <IntegrationsSection />
         <UseCasesSection />
         <HowItWorksSection />
+        <ROICalculator />
         <ComparisonSection />
         <PricingSection />
         <TestimonialsSection />
+        <TrustBadgesSection />
         <FAQSection />
         <FinalCTASection />
       </div>
