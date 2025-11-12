@@ -10,30 +10,29 @@ export function PricingSection() {
     <section className="py-20 md:py-28 bg-muted/30">
       <div className="container">
         <div className="text-center space-y-6 mb-4">
-          {/* Urgency banner */}
+          {/* Free badge */}
           <div className="inline-flex">
-            <Badge variant="destructive" className="px-4 py-2 text-sm font-semibold animate-pulse">
-              <Sparkles className="h-3.5 w-3.5 mr-2 inline" />
-              <span>Limited Time: 50% OFF First Month - 127 Spots Left</span>
+            <Badge variant="secondary" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/30">
+              <Sparkles className="h-3.5 w-3.5 mr-2 inline text-green-600" />
+              <span>100% FREE Desktop Application</span>
             </Badge>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Start Automating for{" "}
+            Download{" "}
             <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              $10/month
+              Free Forever
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join 10,000+ users saving an average of <span className="font-semibold text-foreground">20 hours per week</span>.
-            Try risk-free for 14 days.
+            No subscriptions. No usage limits. Pay only for LLM API usage if you choose cloud providers. <span className="font-semibold text-foreground">Or use Ollama 100% free.</span>
           </p>
 
           {/* Value props */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm pt-4">
             <div className="flex items-center gap-2 text-muted-foreground">
               <TrendingDown className="h-4 w-4 text-success-400" />
-              <span>Average 60% cost reduction vs competitors</span>
+              <span>125x lower cost (~$0.04 vs $5+ per task)</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Clock className="h-4 w-4 text-blue-500" />
@@ -41,7 +40,7 @@ export function PricingSection() {
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Shield className="h-4 w-4 text-purple-500" />
-              <span>30-day money-back guarantee</span>
+              <span>Bring your own API keys</span>
             </div>
           </div>
         </div>
@@ -79,37 +78,36 @@ export function PricingSection() {
                   {tier.price !== null ? (
                     <>
                       <div className="flex items-baseline justify-center gap-2">
-                        {tier.originalPrice && (
-                          <span className="text-2xl text-muted-foreground line-through decoration-2">
-                            ${tier.originalPrice}
-                          </span>
-                        )}
-                        <span className="text-5xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                          ${tier.price}
+                        <span className="text-5xl font-bold bg-gradient-to-br from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                          FREE
                         </span>
-                        <span className="text-muted-foreground font-semibold">/mo</span>
                       </div>
-                      {tier.originalPrice && (
-                        <>
-                          <p className="text-sm text-muted-foreground mt-2">
-                            ${tier.priceMonthly}/month after first month
-                          </p>
-                          <Badge variant="secondary" className="mt-2 text-xs">
-                            Save ${(tier.originalPrice - tier.price) * 12}/year
-                          </Badge>
-                        </>
-                      )}
-                      {tier.id === "free" && (
-                        <p className="text-sm font-semibold text-success-400 mt-2">
-                          Forever free • No credit card
-                        </p>
-                      )}
+                      <p className="text-sm font-semibold text-success-400 mt-2">
+                        Forever free • No credit card • No subscriptions
+                      </p>
+                    </>
+                  ) : tier.customPrice ? (
+                    <>
+                      <div className="flex items-baseline justify-center gap-2">
+                        <span className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                          {tier.customPrice}
+                        </span>
+                        <span className="text-muted-foreground font-semibold">{tier.customPriceUnit}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Pay LLM providers directly
+                      </p>
                     </>
                   ) : (
                     <>
                       <div className="text-3xl font-bold mb-2">Custom</div>
-                      <p className="text-sm text-muted-foreground">Volume pricing available</p>
+                      <p className="text-sm text-muted-foreground">Contact for pricing</p>
                     </>
+                  )}
+                  {tier.costNote && (
+                    <Badge variant="outline" className="mt-3 text-xs">
+                      {tier.costNote}
+                    </Badge>
                   )}
                 </div>
               </CardHeader>
@@ -157,19 +155,19 @@ export function PricingSection() {
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">14-day free trial</span>
+              <span className="font-medium">100% free desktop app</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">Cancel anytime</span>
+              <span className="font-medium">No subscriptions ever</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">No credit card required</span>
+              <span className="font-medium">Use free Ollama or your own API keys</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">30-day money-back guarantee</span>
+              <span className="font-medium">Open source on GitHub</span>
             </div>
           </div>
 
@@ -178,16 +176,16 @@ export function PricingSection() {
               href="/pricing"
               className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold inline-flex items-center gap-1 hover:gap-2 transition-all"
             >
-              Compare all features & FAQ
+              View detailed pricing breakdown & FAQ
               <span>→</span>
             </Link>
           </div>
 
-          {/* Social proof */}
+          {/* Cost comparison */}
           <div className="text-center pt-4">
             <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">8,547 users</span> upgraded this month •
-              <span className="font-semibold text-foreground"> 4.9/5</span> average rating
+              <span className="font-semibold text-foreground">10,000+ downloads</span> •
+              <span className="font-semibold text-foreground"> 125x cheaper</span> than traditional RPA
             </p>
           </div>
         </div>

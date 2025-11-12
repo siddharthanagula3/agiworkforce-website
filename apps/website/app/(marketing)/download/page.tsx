@@ -51,20 +51,20 @@ export default function DownloadPage() {
 
   const systemRequirements = {
     windows: [
-      "Windows 10 (64-bit) or later",
+      "Windows 10/11 (64-bit)",
       "4 GB RAM minimum (8 GB recommended)",
       "500 MB free disk space",
-      "Internet connection for cloud LLMs",
-      ".NET Framework 4.8 or later",
-      "Administrator privileges for installation"
+      "Internet connection (for cloud LLMs only)",
+      "Node.js 20.11.0+ (optional, for development)",
+      "Rust 1.90+ (auto-installed by Tauri)"
     ],
     recommended: [
       "Windows 11 (latest update)",
       "16 GB RAM or more",
       "SSD with 2 GB free space",
-      "Dedicated GPU for vision tasks (optional)",
-      "Multiple monitors (recommended)",
-      "High-speed internet connection"
+      "For Ollama (local free LLMs): 8GB+ RAM",
+      "For advanced automation: Dedicated GPU (optional)",
+      "Multiple monitors for workflow design"
     ]
   }
 
@@ -81,7 +81,7 @@ export default function DownloadPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Get started with AGI Workforce in minutes. One-click installer with no dependencies.
+              100% free desktop application. Built with Tauri + Rust for maximum performance. Use with free Ollama or bring your own LLM API keys.
             </p>
 
             {/* Main Download Button */}
@@ -94,7 +94,7 @@ export default function DownloadPage() {
                   </Link>
                 </Button>
                 <p className="text-sm text-muted-foreground">
-                  Version {versions.windows.version} • {versions.windows.size} • Free 14-day trial
+                  Version {versions.windows.version} • {versions.windows.size} • 100% Free Forever
                 </p>
               </div>
             ) : (
@@ -316,9 +316,20 @@ export default function DownloadPage() {
                       4
                     </span>
                     <div>
-                      <p className="font-medium">Complete setup</p>
+                      <p className="font-medium">Choose your LLM provider</p>
                       <p className="text-sm text-muted-foreground">
-                        Add your LLM API keys and start creating your first automation
+                        Option A: Install Ollama (100% free, runs locally) OR Option B: Add your API keys (OpenAI, Anthropic, Google)
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-blue-500 text-white font-bold">
+                      5
+                    </span>
+                    <div>
+                      <p className="font-medium">Start automating!</p>
+                      <p className="text-sm text-muted-foreground">
+                        Describe your task in natural language and watch AGI Workforce handle it automatically
                       </p>
                     </div>
                   </li>

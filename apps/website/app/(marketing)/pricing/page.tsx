@@ -140,22 +140,33 @@ export default function PricingPage() {
                     {tier.price !== null ? (
                       <>
                         <div className="flex items-baseline justify-center gap-2">
-                          {tier.originalPrice && (
-                            <span className="text-2xl text-muted-foreground line-through">
-                              ${tier.originalPrice}
-                            </span>
-                          )}
-                          <span className="text-5xl font-bold">${tier.price}</span>
-                          <span className="text-muted-foreground">/month</span>
+                          <span className="text-5xl font-bold bg-gradient-to-br from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                            FREE
+                          </span>
                         </div>
-                        {tier.originalPrice && (
-                          <p className="text-sm text-muted-foreground mt-2">
-                            ${tier.priceMonthly}/month after first month
-                          </p>
-                        )}
+                        <p className="text-sm font-semibold text-success-400 mt-2">
+                          Forever free • No subscriptions
+                        </p>
+                      </>
+                    ) : tier.customPrice ? (
+                      <>
+                        <div className="flex items-baseline justify-center gap-2">
+                          <span className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            {tier.customPrice}
+                          </span>
+                          <span className="text-muted-foreground font-semibold">{tier.customPriceUnit}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          Pay providers directly
+                        </p>
                       </>
                     ) : (
                       <div className="text-3xl font-bold">Custom Pricing</div>
+                    )}
+                    {tier.costNote && (
+                      <div className="mt-3">
+                        <p className="text-xs text-muted-foreground">{tier.costNote}</p>
+                      </div>
                     )}
                   </div>
                 </CardHeader>
