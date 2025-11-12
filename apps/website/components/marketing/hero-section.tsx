@@ -26,37 +26,37 @@ export function HeroSection() {
             <div className="inline-flex animate-fade-in">
               <Badge variant="secondary" className="px-4 py-2 text-sm font-medium hover:bg-secondary/80 transition-colors">
                 <Sparkles className="h-3.5 w-3.5 mr-2 inline" />
-                <span>New: Multi-LLM orchestration with cost tracking</span>
+                <span>Built with Tauri + Rust • 98.7% Token Reduction via MCP</span>
               </Badge>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight animate-fade-in-up">
-              Automate Anything.{" "}
+              Your{" "}
               <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                10x Your Productivity.
+                Autonomous Software Engineer
               </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
-              The most powerful desktop automation platform that combines AI agents, browser control, and workflow intelligence.
-              <span className="block mt-2 font-semibold text-foreground">No coding required. No limitations.</span>
+              AI-powered desktop automation with 19 integrated tools. Describe your task, AGI Workforce executes it automatically.
+              <span className="block mt-2 font-semibold text-foreground">100% free. No coding. Unlimited automation.</span>
             </p>
 
             {/* Key benefits pills */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm animate-fade-in-up animation-delay-200">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>5-minute setup</span>
+                <span>100% Free Forever</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>Works offline</span>
+                <span>Windows 10/11</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>SOC 2 certified</span>
+                <span>Ollama Support (Free LLMs)</span>
               </div>
             </div>
 
@@ -65,7 +65,7 @@ export function HeroSection() {
               <Button size="xl" asChild className="text-base group">
                 <Link href="/download">
                   <Download className="h-5 w-5 mr-2 group-hover:animate-bounce" />
-                  <span>Start Free Trial</span>
+                  <span>Download Free</span>
                 </Link>
               </Button>
               <Button
@@ -83,17 +83,17 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground animate-fade-in-up animation-delay-400">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                14-day free trial
+                Free desktop application
               </span>
               <span className="hidden sm:inline">•</span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                No credit card required
+                No subscriptions ever
               </span>
               <span className="hidden sm:inline">•</span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                Cancel anytime
+                Open source on GitHub
               </span>
             </div>
 
@@ -104,21 +104,21 @@ export function HeroSection() {
                   <TrendingUp className="h-5 w-5 text-blue-500" />
                   <div className="text-3xl font-bold">10,000+</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Active users</p>
+                <p className="text-sm text-muted-foreground">Downloads</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Clock className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">2M+</div>
+                  <div className="text-3xl font-bold">6x</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Hours saved monthly</p>
+                <p className="text-sm text-muted-foreground">Faster than Electron</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Shield className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">99.9%</div>
+                  <div className="text-3xl font-bold">125x</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Uptime guarantee</p>
+                <p className="text-sm text-muted-foreground">Lower cost than RPA</p>
               </div>
             </div>
 
