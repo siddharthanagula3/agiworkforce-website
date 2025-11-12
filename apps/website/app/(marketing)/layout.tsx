@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { StickyCTABar } from "@/components/marketing/sticky-cta-bar"
 
 export default function MarketingLayout({
   children,
@@ -8,6 +9,7 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col">
+      <StickyCTABar />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
