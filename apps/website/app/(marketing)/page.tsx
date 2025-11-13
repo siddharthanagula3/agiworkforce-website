@@ -1,4 +1,6 @@
 import { HeroSection } from "@/components/marketing/hero-section"
+import { AIEmployeesSection } from "@/components/marketing/ai-employees-section"
+import { MarketplaceSection } from "@/components/marketing/marketplace-section"
 import { WhatsNewSection } from "@/components/marketing/whats-new-section"
 import { SocialProofSection } from "@/components/marketing/social-proof-section"
 import { CoreValuesSection } from "@/components/marketing/core-values-section"
@@ -21,12 +23,20 @@ export default function HomePage() {
   const softwareSchema = getSoftwareApplicationSchema()
   const faqSchema = getFAQSchema([
     {
-      question: "What's new in the November 2025 update?",
-      answer: "Major performance improvements! We've added parallel agent execution (8+ agents running simultaneously), Claude 4.5 Haiku integration (4-5x faster), 3-tier caching system, and support for the latest LLMs including GPT-5, Claude 4.5, and Gemini 2.5 Pro. Tasks now complete in under 30 seconds with 66% cost reduction.",
+      question: "What are AI Employees and how do they work?",
+      answer: "AI Employees are pre-trained autonomous agents ready to deploy in under 60 seconds. We offer 20+ specialized roles like Customer Support Agent, Code Review Agent, Lead Qualifier, and more. Each employee comes with an instant demo showing real-world ROI (time and cost savings). Simply select an employee, try the demo, and deploy - no configuration needed. They work 24/7 across Slack, Teams, and WhatsApp.",
     },
     {
-      question: "What is parallel agent execution?",
-      answer: "Inspired by Cursor 2.0, AGI Workforce can spawn 8+ autonomous agents that work on your task simultaneously using different strategies. Each agent runs in an isolated sandbox, and the system automatically compares results to select the best solution. This makes complex tasks 4-5x faster.",
+      question: "How does the Workflow Marketplace work?",
+      answer: "The Marketplace features 50+ community-created workflows with 10M+ downloads. You can install any workflow with one click, fork and customize it for your needs, or share your own workflows. Viral sharing is built-in - share to Twitter, LinkedIn, Slack, Discord, Reddit, and Hacker News with one click. Top contributors earn rewards.",
+    },
+    {
+      question: "What is outcome-based pricing?",
+      answer: "You only pay for successful automations - failed ones are completely free. Pay-per-result tier costs $0.50 per successful automation. We also offer a Free tier (10 hours/month) and Pro tier ($39/month unlimited). Real-time usage tracking shows exactly what you're being charged for, with transparent itemized invoices. Enterprise customers get an ROI guarantee with automatic refunds if targets aren't met.",
+    },
+    {
+      question: "How does the Real-Time ROI Dashboard work?",
+      answer: "Our dashboard tracks every automation and displays live metrics: time saved, cost saved, automations run, success rates, and more. Updates appear in under 250ms. Beautiful charts show 30-day trends, and the system celebrates milestones (like saving 100 hours or $10K). You can compare manual vs. automated performance, view period-over-period changes, and export detailed reports to PDF/CSV for stakeholders.",
     },
     {
       question: "What operating systems are supported?",
@@ -89,6 +99,8 @@ export default function HomePage() {
       />
       <div className="flex flex-col">
         <HeroSection />
+        <AIEmployeesSection />
+        <MarketplaceSection />
         <WhatsNewSection />
         <SocialProofSection />
         <CoreValuesSection />

@@ -13,7 +13,11 @@ import {
   Code,
   GitBranch,
   MessageSquare,
-  Check
+  Check,
+  Users,
+  Share2,
+  TrendingUp,
+  DollarSign
 } from "lucide-react"
 import Link from "next/link"
 import type { Metadata } from "next"
@@ -36,8 +40,73 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   const features = [
     {
+      icon: Users,
+      title: "👥 AI Employee Library (NEW 2026)",
+      description: "20+ pre-trained AI employees ready to deploy in under 60 seconds.",
+      details: [
+        "Instant deployment with zero configuration",
+        "20+ specialized roles (Support, Sales, Engineering, etc.)",
+        "Interactive demos showing ROI in 45-55 seconds",
+        "Each employee saves 4-12 hours/day on average",
+        "Annual cost savings of $18K-$48K per employee",
+        "Works 24/7 across Slack, Teams, WhatsApp"
+      ]
+    },
+    {
+      icon: Share2,
+      title: "🛒 Workflow Marketplace (NEW 2026)",
+      description: "50+ community workflows with viral sharing to 6+ social platforms.",
+      details: [
+        "One-click install from 50+ curated templates",
+        "10M+ total workflow downloads",
+        "Share to Twitter, LinkedIn, Slack, Discord, Reddit, HN",
+        "Fork and customize any workflow instantly",
+        "Rate and review community contributions",
+        "Earn contributor rewards for popular workflows"
+      ]
+    },
+    {
+      icon: TrendingUp,
+      title: "📊 Real-Time ROI Dashboard (NEW 2026)",
+      description: "Live metrics proving value with <250ms update latency.",
+      details: [
+        "Real-time tracking of time saved, cost saved, automations run",
+        "Beautiful charts showing 30-day trends",
+        "Milestone celebrations (100 hours saved, $10K saved, etc.)",
+        "Period-over-period comparisons",
+        "Manual vs. automated efficiency metrics",
+        "One-click export to PDF/CSV for stakeholders"
+      ]
+    },
+    {
+      icon: DollarSign,
+      title: "💰 Outcome-Based Pricing (NEW 2026)",
+      description: "Pay only for successful results - failed automations are free.",
+      details: [
+        "$0.50 per successful automation (failures free)",
+        "Real-time usage tracking and cost calculator",
+        "Transparent invoicing with itemized breakdowns",
+        "ROI guarantee for Enterprise (refund if not met)",
+        "Free tier: 10 hours/month at no cost",
+        "Pro tier: Unlimited for $39/month"
+      ]
+    },
+    {
+      icon: MessageSquare,
+      title: "💬 Messaging Platform Integration (NEW 2026)",
+      description: "Work where your team works - Slack, Teams, WhatsApp support.",
+      details: [
+        "Slack: Commands, interactive buttons, threaded replies",
+        "Microsoft Teams: Cards, adaptive actions, bot mentions",
+        "WhatsApp Business API for customer support",
+        "Real-time notifications and alerts",
+        "Bidirectional sync with desktop app",
+        "Secure OAuth2 authentication for all platforms"
+      ]
+    },
+    {
       icon: Zap,
-      title: "⚡ Parallel Agent Execution (NEW 2026)",
+      title: "⚡ Parallel Agent Execution",
       description: "8+ agents run simultaneously with Cursor 2.0-style result comparison.",
       details: [
         "8 agents execute with different strategies in parallel",

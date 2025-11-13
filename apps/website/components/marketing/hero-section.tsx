@@ -26,37 +26,38 @@ export function HeroSection() {
             <div className="inline-flex animate-fade-in">
               <Badge variant="secondary" className="px-4 py-2 text-sm font-medium hover:bg-secondary/80 transition-colors">
                 <Sparkles className="h-3.5 w-3.5 mr-2 inline" />
-                <span>🚀 NEW: Claude 4.5 + Parallel Agent Execution • 4x Faster • Enterprise-Ready 2026</span>
+                <span>🎉 NEW: 20+ Pre-Built AI Employees • Deploy in 60 Seconds • Workflow Marketplace Live</span>
               </Badge>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight animate-fade-in-up">
-              Your{" "}
+              Hire{" "}
               <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Autonomous Software Engineer
+                AI Employees
               </span>
+              {" "}Ready in Minutes
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
-              The world's first autonomous AI agent with parallel execution. Powered by Claude 4.5 Sonnet (77.2% SWE-bench), GPT-5, and Gemini 2.5 Pro.
-              <span className="block mt-2 font-semibold text-foreground">4x faster than traditional tools. 98.7% lower token costs via MCP.</span>
+              20+ pre-trained AI employees ready to work instantly. From customer support to code reviews, deploy specialized agents in under 60 seconds.
+              <span className="block mt-2 font-semibold text-foreground">Marketplace with 50+ workflows. Real-time ROI tracking. Pay only for results.</span>
             </p>
 
             {/* Key benefits pills */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm animate-fade-in-up animation-delay-200">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>8+ Parallel Agents (Cursor 2.0 Style)</span>
+                <span>20+ AI Employees Ready Now</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>Claude 4.5 Haiku (4-5x Faster)</span>
+                <span>Deploy in &lt;60 Seconds</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>3-Tier Caching System</span>
+                <span>Viral Workflow Marketplace</span>
               </div>
             </div>
 
@@ -102,23 +103,23 @@ export function HeroSection() {
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <TrendingUp className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">4-5x</div>
+                  <div className="text-3xl font-bold">20+</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Faster Execution</p>
+                <p className="text-sm text-muted-foreground">AI Employees Ready</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Clock className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">&lt;30s</div>
+                  <div className="text-3xl font-bold">&lt;60s</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Task Completion</p>
+                <p className="text-sm text-muted-foreground">Deploy Time</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Shield className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">66%</div>
+                  <div className="text-3xl font-bold">12x</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Cost Reduction</p>
+                <p className="text-sm text-muted-foreground">Average ROI</p>
               </div>
             </div>
 

@@ -10,42 +10,42 @@ export function PricingSection() {
     <section className="py-20 md:py-28 bg-muted/30">
       <div className="container">
         <div className="text-center space-y-6 mb-4">
-          {/* Free badge */}
+          {/* Outcome-based badge */}
           <div className="inline-flex">
             <Badge variant="secondary" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/30">
               <Sparkles className="h-3.5 w-3.5 mr-2 inline text-green-600" />
-              <span>100% FREE Desktop Application</span>
+              <span>Pay Only for Results • Failed Automations FREE</span>
             </Badge>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Download{" "}
             <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Free Forever
+              Outcome-Based
             </span>
+            {" "}Pricing
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            No subscriptions. No usage limits. Pay only for LLM API usage if you choose cloud providers. <span className="font-semibold text-foreground">Or use Ollama 100% free.</span>
+            Start free with 10 hours/month. Upgrade to pay-per-result ($0.50 per success) or Pro unlimited ($39/month). <span className="font-semibold text-foreground">Failed automations are always free.</span>
           </p>
 
           {/* Value props */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm pt-4">
             <div className="flex items-center gap-2 text-muted-foreground">
               <TrendingDown className="h-4 w-4 text-success-400" />
-              <span>125x lower cost (~$0.04 vs $5+ per task)</span>
+              <span>Only pay for successful results</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Clock className="h-4 w-4 text-blue-500" />
-              <span>Setup in 5 minutes</span>
+              <span>Deploy AI employees in 60 seconds</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Shield className="h-4 w-4 text-purple-500" />
-              <span>Bring your own API keys</span>
+              <span>ROI guarantee for Enterprise</span>
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mt-16">
           {pricingTiers.map((tier, index) => (
             <Card
               key={tier.id}
@@ -75,7 +75,7 @@ export function PricingSection() {
                 </CardDescription>
 
                 <div className="mt-6">
-                  {tier.price !== null ? (
+                  {tier.price === 0 ? (
                     <>
                       <div className="flex items-baseline justify-center gap-2">
                         <span className="text-5xl font-bold bg-gradient-to-br from-green-600 to-emerald-600 bg-clip-text text-transparent">
@@ -83,7 +83,19 @@ export function PricingSection() {
                         </span>
                       </div>
                       <p className="text-sm font-semibold text-success-400 mt-2">
-                        Forever free • No credit card • No subscriptions
+                        No credit card required
+                      </p>
+                    </>
+                  ) : tier.price !== null && tier.price > 0 ? (
+                    <>
+                      <div className="flex items-baseline justify-center gap-2">
+                        <span className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                          ${tier.price}
+                        </span>
+                        <span className="text-muted-foreground font-semibold">/month</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Unlimited automations
                       </p>
                     </>
                   ) : tier.customPrice ? (
@@ -95,7 +107,7 @@ export function PricingSection() {
                         <span className="text-muted-foreground font-semibold">{tier.customPriceUnit}</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-2">
-                        Pay LLM providers directly
+                        Only pay for successful results
                       </p>
                     </>
                   ) : (
@@ -155,19 +167,19 @@ export function PricingSection() {
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">100% free desktop app</span>
+              <span className="font-medium">Pay only for successful results</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">No subscriptions ever</span>
+              <span className="font-medium">Failed automations FREE</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">Use free Ollama or your own API keys</span>
+              <span className="font-medium">Cancel anytime, no commitment</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-success-400" />
-              <span className="font-medium">Open source on GitHub</span>
+              <span className="font-medium">ROI guarantee for Enterprise</span>
             </div>
           </div>
 
@@ -181,11 +193,12 @@ export function PricingSection() {
             </Link>
           </div>
 
-          {/* Cost comparison */}
+          {/* Social proof */}
           <div className="text-center pt-4">
             <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">10,000+ downloads</span> •
-              <span className="font-semibold text-foreground"> 125x cheaper</span> than traditional RPA
+              <span className="font-semibold text-foreground">85K+ users</span> •
+              <span className="font-semibold text-foreground"> 10M+ workflows downloaded</span> •
+              <span className="font-semibold text-foreground"> 12x average ROI</span>
             </p>
           </div>
         </div>
