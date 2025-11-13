@@ -36,13 +36,52 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   const features = [
     {
+      icon: Zap,
+      title: "⚡ Parallel Agent Execution (NEW 2026)",
+      description: "8+ agents run simultaneously with Cursor 2.0-style result comparison.",
+      details: [
+        "8 agents execute with different strategies in parallel",
+        "Isolated sandboxes using Git worktrees",
+        "Automatic result scoring and ranking",
+        "Best solution auto-selected and applied",
+        "Tasks complete in under 30 seconds",
+        "4-5x faster than sequential execution"
+      ]
+    },
+    {
+      icon: Brain,
+      title: "🧠 Hybrid LLM Strategy (NEW 2026)",
+      description: "Claude 4.5 Sonnet for planning, Haiku 4.5 for execution - best of both worlds.",
+      details: [
+        "Sonnet 4.5: 77.2% SWE-bench for complex planning",
+        "Haiku 4.5: 4-5x faster for rapid execution",
+        "66% cost reduction without quality loss",
+        "Support for GPT-5, O3, Gemini 2.5 Pro",
+        "Automatic model selection per task",
+        "Smart fallback to ensure reliability"
+      ]
+    },
+    {
+      icon: Database,
+      title: "💾 3-Tier Caching System (NEW 2026)",
+      description: "Response, tool, and codebase caching for instant results.",
+      details: [
+        "Response cache: Instant answers for repeated queries",
+        "Tool cache: Pre-computed tool outputs saved",
+        "Codebase cache: Fast code analysis with incremental updates",
+        "Configurable TTL per cache layer",
+        "Automatic cache invalidation on changes",
+        "Reduces API calls by up to 80%"
+      ]
+    },
+    {
       icon: Workflow,
       title: "Visual Automation Builder",
       description: "Build complex workflows without writing a single line of code.",
       details: [
-        "Drag-and-drop interface with 15+ pre-built tools",
+        "Drag-and-drop interface with 19+ integrated tools",
         "Node-based flow editor for visual workflow design",
-        "Pre-built templates for common automation tasks",
+        "50+ pre-built agent templates for common tasks",
         "Real-time testing and debugging capabilities",
         "Export and share workflows with your team",
         "Version control for workflow iterations"

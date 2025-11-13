@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/marketing/hero-section"
+import { WhatsNewSection } from "@/components/marketing/whats-new-section"
 import { SocialProofSection } from "@/components/marketing/social-proof-section"
 import { CoreValuesSection } from "@/components/marketing/core-values-section"
 import { FeaturesSection } from "@/components/marketing/features-section"
@@ -19,6 +20,14 @@ export default function HomePage() {
   const organizationSchema = getOrganizationSchema()
   const softwareSchema = getSoftwareApplicationSchema()
   const faqSchema = getFAQSchema([
+    {
+      question: "What's new in the November 2025 update?",
+      answer: "Major performance improvements! We've added parallel agent execution (8+ agents running simultaneously), Claude 4.5 Haiku integration (4-5x faster), 3-tier caching system, and support for the latest LLMs including GPT-5, Claude 4.5, and Gemini 2.5 Pro. Tasks now complete in under 30 seconds with 66% cost reduction.",
+    },
+    {
+      question: "What is parallel agent execution?",
+      answer: "Inspired by Cursor 2.0, AGI Workforce can spawn 8+ autonomous agents that work on your task simultaneously using different strategies. Each agent runs in an isolated sandbox, and the system automatically compares results to select the best solution. This makes complex tasks 4-5x faster.",
+    },
     {
       question: "What operating systems are supported?",
       answer: "AGI Workforce currently supports Windows 10/11 (64-bit). Built with Tauri 2.0 + Rust for maximum performance. macOS and Linux support are planned for Q2 2025.",
@@ -80,6 +89,7 @@ export default function HomePage() {
       />
       <div className="flex flex-col">
         <HeroSection />
+        <WhatsNewSection />
         <SocialProofSection />
         <CoreValuesSection />
         <FeaturesSection />

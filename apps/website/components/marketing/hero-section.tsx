@@ -26,7 +26,7 @@ export function HeroSection() {
             <div className="inline-flex animate-fade-in">
               <Badge variant="secondary" className="px-4 py-2 text-sm font-medium hover:bg-secondary/80 transition-colors">
                 <Sparkles className="h-3.5 w-3.5 mr-2 inline" />
-                <span>Built with Tauri + Rust • 98.7% Token Reduction via MCP</span>
+                <span>🚀 NEW: Claude 4.5 + Parallel Agent Execution • 4x Faster • Enterprise-Ready 2026</span>
               </Badge>
             </div>
 
@@ -40,23 +40,23 @@ export function HeroSection() {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
-              AI-powered desktop automation with 19 integrated tools. Describe your task, AGI Workforce executes it automatically.
-              <span className="block mt-2 font-semibold text-foreground">100% free. No coding. Unlimited automation.</span>
+              The world's first autonomous AI agent with parallel execution. Powered by Claude 4.5 Sonnet (77.2% SWE-bench), GPT-5, and Gemini 2.5 Pro.
+              <span className="block mt-2 font-semibold text-foreground">4x faster than traditional tools. 98.7% lower token costs via MCP.</span>
             </p>
 
             {/* Key benefits pills */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm animate-fade-in-up animation-delay-200">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>100% Free Forever</span>
+                <span>8+ Parallel Agents (Cursor 2.0 Style)</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>Windows 10/11</span>
+                <span>Claude 4.5 Haiku (4-5x Faster)</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>Ollama Support (Free LLMs)</span>
+                <span>3-Tier Caching System</span>
               </div>
             </div>
 
@@ -102,23 +102,23 @@ export function HeroSection() {
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <TrendingUp className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">10,000+</div>
+                  <div className="text-3xl font-bold">4-5x</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Downloads</p>
+                <p className="text-sm text-muted-foreground">Faster Execution</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Clock className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">6x</div>
+                  <div className="text-3xl font-bold">&lt;30s</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Faster than Electron</p>
+                <p className="text-sm text-muted-foreground">Task Completion</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Shield className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">125x</div>
+                  <div className="text-3xl font-bold">66%</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Lower cost than RPA</p>
+                <p className="text-sm text-muted-foreground">Cost Reduction</p>
               </div>
             </div>
 

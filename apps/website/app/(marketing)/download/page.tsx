@@ -24,12 +24,12 @@ export default function DownloadPage() {
 
   const versions = {
     windows: {
-      version: "1.2.0",
-      size: "125 MB",
+      version: "1.3.0",
+      size: "128 MB",
       requirements: "Windows 10 or later (64-bit)",
       downloadUrl: "#",
-      checksum: "sha256:abc123...",
-      releaseDate: "March 15, 2025"
+      checksum: "sha256:def456...",
+      releaseDate: "November 13, 2025"
     },
     macos: {
       version: "Coming Q2 2025",
@@ -126,11 +126,9 @@ export default function DownloadPage() {
                     <Monitor className="h-8 w-8 text-blue-500" />
                   </div>
                   <CardTitle>Windows</CardTitle>
-                  <CardDescription>
-                    {detectedOS === "windows" && (
-                      <Badge className="mt-2">Detected</Badge>
-                    )}
-                  </CardDescription>
+                  {detectedOS === "windows" && (
+                    <Badge className="mt-2 mx-auto">Detected</Badge>
+                  )}
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2 text-sm">
@@ -157,11 +155,9 @@ export default function DownloadPage() {
                     <Apple className="h-8 w-8 text-muted-foreground" />
                   </div>
                   <CardTitle>macOS</CardTitle>
-                  <CardDescription>
-                    {detectedOS === "macos" && (
-                      <Badge className="mt-2">Detected</Badge>
-                    )}
-                  </CardDescription>
+                  {detectedOS === "macos" && (
+                    <Badge className="mt-2 mx-auto">Detected</Badge>
+                  )}
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2 text-sm">
@@ -184,11 +180,9 @@ export default function DownloadPage() {
                     <Github className="h-8 w-8 text-muted-foreground" />
                   </div>
                   <CardTitle>Linux</CardTitle>
-                  <CardDescription>
-                    {detectedOS === "linux" && (
-                      <Badge className="mt-2">Detected</Badge>
-                    )}
-                  </CardDescription>
+                  {detectedOS === "linux" && (
+                    <Badge className="mt-2 mx-auto">Detected</Badge>
+                  )}
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2 text-sm">
