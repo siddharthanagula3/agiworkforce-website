@@ -1,4 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
+import { createClient } from '@supabase/supabase-js'
+import { generateDeviceLinkCode } from "@/lib/device-tokens"
+
+// Use service role key for device linking (doesn't require auth)
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  }
+)
 
 /**
  * Device Link Initialization Endpoint
@@ -31,12 +45,6 @@ import { NextRequest, NextResponse } from "next/server"
  * 4. User enters code in browser (while logged in)
  * 5. Desktop app polls /api/device/status/{deviceLinkId} until approved
  * 6. Backend returns access token to desktop app
- *
- * TODO: Integration Requirements:
- * - Store device link requests in database (Redis or PostgreSQL)
- * - Generate secure random codes
- * - Set expiration (10 minutes recommended)
- * - Rate limit this endpoint to prevent abuse
  */
 export async function POST(request: NextRequest) {
   try {
@@ -67,41 +75,53 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // TODO: Generate actual device link ID and code
-    // Example implementation:
-    //
-    // const deviceLinkId = generateId("link_")
-    // const code = generateSecureCode(6) // e.g., "XYZABC"
-    // const expiresAt = new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
-    //
-    // await db.deviceLinks.create({
-    //   id: deviceLinkId,
-    //   code: code,
-    //   deviceName: body.deviceName,
-    //   platform: body.platform,
-    //   appVersion: body.appVersion,
-    //   deviceFingerprint: body.deviceFingerprint,
-    //   status: "pending",
-    //   expiresAt: expiresAt,
-    //   createdAt: new Date(),
-    // })
+    // Generate secure code and expiration
+    const code = generateDeviceLinkCode()
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
 
-    // Mock response for development
-    const mockResponse = {
-      deviceLinkId: `link_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      code: generateMockCode(),
-      expiresAt: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
-      verificationUrl: `${process.env.NEXT_PUBLIC_SITE_URL || "https://agiworkforce.com"}/link-device?code=${generateMockCode()}`,
+    // Create device link request in database
+    const { data: deviceLink, error: insertError } = await supabaseAdmin
+      .from('device_links')
+      .insert({
+        code: code,
+        device_name: body.deviceName,
+        platform: body.platform,
+        app_version: body.appVersion,
+        fingerprint: body.deviceFingerprint,
+        status: 'pending',
+        expires_at: expiresAt.toISOString(),
+      })
+      .select()
+      .single()
+
+    if (insertError || !deviceLink) {
+      console.error('Failed to create device link:', insertError)
+      return NextResponse.json(
+        {
+          error: "Database error",
+          message: "Failed to create device link request",
+          code: "DB_ERROR",
+        },
+        { status: 500 }
+      )
+    }
+
+    const response = {
+      deviceLinkId: deviceLink.id,
+      code: code,
+      expiresAt: expiresAt.toISOString(),
+      verificationUrl: `${process.env.NEXT_PUBLIC_SITE_URL || "https://agiworkforce.com"}/link-device?code=${code}`,
     }
 
     console.log("Device link initiated:", {
-      deviceLinkId: mockResponse.deviceLinkId,
+      deviceLinkId: deviceLink.id,
       deviceName: body.deviceName,
       platform: body.platform,
+      code: code,
       timestamp: new Date().toISOString(),
     })
 
-    return NextResponse.json(mockResponse, { status: 200 })
+    return NextResponse.json(response, { status: 200 })
   } catch (error) {
     console.error("Device link init error:", error)
 
@@ -114,17 +134,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
-}
-
-/**
- * Generates a mock 6-character code for development
- * TODO: Replace with cryptographically secure random code generator
- */
-function generateMockCode(): string {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789" // Excluding ambiguous chars
-  let code = ""
-  for (let i = 0; i < 6; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length))
-  }
-  return code
 }

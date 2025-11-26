@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { createClient } from "@/lib/supabase/server"
 
 /**
  * Current User Profile & Plan Endpoint
@@ -9,8 +10,7 @@ import { NextRequest, NextResponse } from "next/server"
  * GET /api/me
  *
  * Authentication:
- * - Requires session cookie or Bearer token
- * - TODO: Integrate with actual auth system (NextAuth, Supabase, Clerk, etc.)
+ * - Requires Supabase session cookie or Bearer token (device token)
  *
  * Response (200 OK):
  * {
@@ -49,30 +49,15 @@ import { NextRequest, NextResponse } from "next/server"
  */
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Replace this with actual authentication
-    // Example integrations:
-    //
-    // NextAuth.js:
-    // const session = await getServerSession(authOptions)
-    // if (!session?.user) return unauthorized()
-    //
-    // Supabase:
-    // const { data: { session } } = await supabase.auth.getSession()
-    // if (!session) return unauthorized()
-    //
-    // Clerk:
-    // const { userId } = auth()
-    // if (!userId) return unauthorized()
-    //
-    // Custom JWT:
-    // const token = request.headers.get("authorization")?.replace("Bearer ", "")
-    // const user = await verifyToken(token)
+    const supabase = await createClient()
 
-    const authHeader = request.headers.get("authorization")
-    const hasSessionCookie = request.cookies.has("session")
+    // Get authenticated user
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
 
-    // Check for authentication
-    if (!authHeader && !hasSessionCookie) {
+    if (authError || !user) {
       return NextResponse.json(
         {
           error: "Unauthorized",
@@ -83,35 +68,55 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // TODO: Get actual user data from database
-    // This is a mock response for development/testing
-    // Replace with actual database query once auth is integrated
-    const mockUser = {
-      id: "user_demo_123",
-      email: "demo@example.com",
-      displayName: "Demo User",
-      plan: "free" as const,
-      planStatus: "active" as const,
-      trialEndsAt: null,
-      featureFlags: getPlanFeatureFlags("free"),
-      linkedDevices: [
+    // Get user profile from database
+    const { data: userProfile, error: profileError } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", user.id)
+      .single()
+
+    if (profileError || !userProfile) {
+      return NextResponse.json(
         {
-          id: "device_mock_1",
-          name: "Demo Windows PC",
-          platform: "windows",
-          linkedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-          lastSeenAt: new Date().toISOString(),
+          error: "User not found",
+          message: "Could not find user profile",
+          code: "USER_NOT_FOUND",
         },
-      ],
+        { status: 404 }
+      )
+    }
+
+    // Get linked devices
+    const { data: devices } = await supabase
+      .from("devices")
+      .select("id, name, platform, linked_at, last_seen_at")
+      .eq("user_id", user.id)
+      .order("linked_at", { ascending: false })
+
+    const response = {
+      id: userProfile.id,
+      email: userProfile.email,
+      displayName: userProfile.display_name || userProfile.email,
+      plan: userProfile.plan as "free" | "pay-per-result" | "pro" | "enterprise",
+      planStatus: userProfile.plan_status as "active" | "trial" | "cancelled" | "past_due",
+      trialEndsAt: userProfile.trial_ends_at,
+      featureFlags: getPlanFeatureFlags(userProfile.plan),
+      linkedDevices: (devices || []).map((device) => ({
+        id: device.id,
+        name: device.name,
+        platform: device.platform,
+        linkedAt: device.linked_at,
+        lastSeenAt: device.last_seen_at,
+      })),
     }
 
     console.log("User profile requested:", {
-      userId: mockUser.id,
-      plan: mockUser.plan,
+      userId: user.id,
+      plan: userProfile.plan,
       timestamp: new Date().toISOString(),
     })
 
-    return NextResponse.json(mockUser, { status: 200 })
+    return NextResponse.json(response, { status: 200 })
   } catch (error) {
     console.error("User profile endpoint error:", error)
 

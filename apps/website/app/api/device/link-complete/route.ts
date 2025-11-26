@@ -1,4 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
+import { createClient } from "@/lib/supabase/server"
+import { createClient as createAdminClient } from '@supabase/supabase-js'
+import { generateDeviceToken, hashDeviceToken } from "@/lib/device-tokens"
+
+// Use service role key for admin operations
+const supabaseAdmin = createAdminClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  }
+)
 
 /**
  * Device Link Completion Endpoint
@@ -55,14 +70,15 @@ import { NextRequest, NextResponse } from "next/server"
  */
 export async function POST(request: NextRequest) {
   try {
-    // TODO: Check authentication
-    // const session = await getServerSession(authOptions)
-    // if (!session?.user) return unauthorized()
+    const supabase = await createClient()
 
-    const authHeader = request.headers.get("authorization")
-    const hasSessionCookie = request.cookies.has("session")
+    // Check authentication
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
 
-    if (!authHeader && !hasSessionCookie) {
+    if (authError || !user) {
       return NextResponse.json(
         {
           error: "Unauthorized",
@@ -89,82 +105,114 @@ export async function POST(request: NextRequest) {
 
     const code = body.code.toUpperCase().trim()
 
-    // TODO: Lookup device link request in database
-    // Example:
-    //
-    // const deviceLink = await db.deviceLinks.findUnique({
-    //   where: { code: code }
-    // })
-    //
-    // if (!deviceLink) {
-    //   return NextResponse.json({
-    //     error: "Invalid code",
-    //     message: "The code you entered is invalid or has expired",
-    //     code: "CODE_NOT_FOUND"
-    //   }, { status: 404 })
-    // }
-    //
-    // if (deviceLink.expiresAt < new Date()) {
-    //   await db.deviceLinks.delete({ where: { id: deviceLink.id } })
-    //   return NextResponse.json({
-    //     error: "Code expired",
-    //     message: "This code has expired. Please try again.",
-    //     code: "CODE_EXPIRED"
-    //   }, { status: 410 })
-    // }
-    //
-    // if (deviceLink.status === "approved") {
-    //   return NextResponse.json({
-    //     error: "Code already used",
-    //     message: "This code has already been used",
-    //     code: "CODE_ALREADY_USED"
-    //   }, { status: 409 })
-    // }
-    //
-    // // Generate device access token
-    // const deviceToken = generateSecureToken()
-    //
-    // // Update device link status
-    // await db.deviceLinks.update({
-    //   where: { id: deviceLink.id },
-    //   data: {
-    //     status: "approved",
-    //     userId: session.user.id,
-    //     deviceToken: deviceToken,
-    //     approvedAt: new Date(),
-    //   }
-    // })
-    //
-    // // Create device record
-    // await db.devices.create({
-    //   data: {
-    //     id: deviceLink.id,
-    //     userId: session.user.id,
-    //     name: deviceLink.deviceName,
-    //     platform: deviceLink.platform,
-    //     appVersion: deviceLink.appVersion,
-    //     fingerprint: deviceLink.deviceFingerprint,
-    //     token: deviceToken,
-    //     linkedAt: new Date(),
-    //     lastSeenAt: new Date(),
-    //   }
-    // })
+    // Lookup device link request
+    const { data: deviceLink, error: lookupError } = await supabaseAdmin
+      .from('device_links')
+      .select('*')
+      .eq('code', code)
+      .single()
 
-    // Mock response for development
-    const mockResponse = {
+    if (lookupError || !deviceLink) {
+      return NextResponse.json(
+        {
+          error: "Invalid code",
+          message: "The code you entered is invalid or has expired",
+          code: "CODE_NOT_FOUND",
+        },
+        { status: 404 }
+      )
+    }
+
+    // Check if expired
+    if (new Date(deviceLink.expires_at) < new Date()) {
+      await supabaseAdmin
+        .from('device_links')
+        .update({ status: 'expired' })
+        .eq('id', deviceLink.id)
+
+      return NextResponse.json(
+        {
+          error: "Code expired",
+          message: "This code has expired. Please try again.",
+          code: "CODE_EXPIRED",
+        },
+        { status: 410 }
+      )
+    }
+
+    // Check if already approved
+    if (deviceLink.status === 'approved') {
+      return NextResponse.json(
+        {
+          error: "Code already used",
+          message: "This code has already been used",
+          code: "CODE_ALREADY_USED",
+        },
+        { status: 409 }
+      )
+    }
+
+    // Generate device access token
+    const deviceToken = generateDeviceToken()
+    const tokenHash = hashDeviceToken(deviceToken)
+
+    // Create device record
+    const { data: newDevice, error: deviceError } = await supabaseAdmin
+      .from('devices')
+      .insert({
+        user_id: user.id,
+        name: deviceLink.device_name,
+        platform: deviceLink.platform,
+        app_version: deviceLink.app_version,
+        fingerprint: deviceLink.fingerprint,
+        token_hash: tokenHash,
+      })
+      .select()
+      .single()
+
+    if (deviceError || !newDevice) {
+      console.error('Failed to create device:', deviceError)
+      return NextResponse.json(
+        {
+          error: "Database error",
+          message: "Failed to create device record",
+          code: "DB_ERROR",
+        },
+        { status: 500 }
+      )
+    }
+
+    // Update device link status and temporarily store token for desktop app to retrieve
+    // Token will be cleared after first retrieval by status endpoint
+    await supabaseAdmin
+      .from('device_links')
+      .update({
+        status: 'approved',
+        user_id: user.id,
+        device_id: newDevice.id,
+        approved_at: new Date().toISOString(),
+        // Store token temporarily - will be cleared after first status poll
+        device_token: deviceToken,
+      })
+      .eq('id', deviceLink.id)
+
+    const response = {
       success: true,
-      deviceLinkId: `link_${Date.now()}_mock`,
-      deviceName: "Demo Device",
-      platform: "windows",
+      deviceLinkId: deviceLink.id,
+      deviceId: newDevice.id,
+      deviceName: deviceLink.device_name,
+      platform: deviceLink.platform,
     }
 
     console.log("Device link completed:", {
       code: code,
-      deviceLinkId: mockResponse.deviceLinkId,
+      deviceLinkId: deviceLink.id,
+      deviceId: newDevice.id,
+      userId: user.id,
       timestamp: new Date().toISOString(),
     })
 
-    return NextResponse.json(mockResponse, { status: 200 })
+    return NextResponse.json(response, { status: 200 })
   } catch (error) {
     console.error("Device link complete error:", error)
 

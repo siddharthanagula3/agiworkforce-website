@@ -1,4 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
+import { createClient } from '@supabase/supabase-js'
+
+// Use service role key for device linking
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  }
+)
 
 /**
  * Device Link Status Polling Endpoint
@@ -45,12 +58,6 @@ import { NextRequest, NextResponse } from "next/server"
  * - Maximum 300 attempts (10 minutes)
  * - Exponential backoff after 60 seconds
  * - Stop polling when status is "approved" or "expired"
- *
- * TODO: Integration Requirements:
- * - Lookup device link by ID
- * - Return current status (pending/approved/expired)
- * - When approved, return access token and user info
- * - Clean up expired requests after 24 hours
  */
 export async function GET(
   request: NextRequest,
@@ -59,7 +66,7 @@ export async function GET(
   try {
     const { deviceLinkId } = params
 
-    if (!deviceLinkId || !deviceLinkId.startsWith("link_")) {
+    if (!deviceLinkId) {
       return NextResponse.json(
         {
           error: "Invalid request",
@@ -70,75 +77,90 @@ export async function GET(
       )
     }
 
-    // TODO: Lookup device link in database
-    // Example:
-    //
-    // const deviceLink = await db.deviceLinks.findUnique({
-    //   where: { id: deviceLinkId }
-    // })
-    //
-    // if (!deviceLink) {
-    //   return NextResponse.json({
-    //     error: "Not found",
-    //     message: "Device link request not found",
-    //     code: "NOT_FOUND"
-    //   }, { status: 404 })
-    // }
-    //
-    // // Check if expired
-    // if (deviceLink.expiresAt < new Date()) {
-    //   await db.deviceLinks.update({
-    //     where: { id: deviceLinkId },
-    //     data: { status: "expired" }
-    //   })
-    //
-    //   return NextResponse.json({
-    //     status: "expired",
-    //     message: "This device link request has expired"
-    //   }, { status: 410 })
-    // }
-    //
-    // // Check if approved
-    // if (deviceLink.status === "approved") {
-    //   const user = await db.users.findUnique({
-    //     where: { id: deviceLink.userId }
-    //   })
-    //
-    //   return NextResponse.json({
-    //     status: "approved",
-    //     deviceLinkId: deviceLink.id,
-    //     accessToken: deviceLink.deviceToken,
-    //     user: {
-    //       id: user.id,
-    //       email: user.email,
-    //       displayName: user.name || user.email,
-    //     }
-    //   }, { status: 200 })
-    // }
-    //
-    // // Still pending
-    // return NextResponse.json({
-    //   status: "pending",
-    //   deviceLinkId: deviceLink.id,
-    //   expiresAt: deviceLink.expiresAt.toISOString(),
-    // }, { status: 200 })
+    // Lookup device link in database
+    const { data: deviceLink, error: lookupError } = await supabaseAdmin
+      .from('device_links')
+      .select('*')
+      .eq('id', deviceLinkId)
+      .single()
 
-    // Mock response for development - always returns pending
-    // In a real implementation, this would check the database
-    const mockResponse = {
+    if (lookupError || !deviceLink) {
+      return NextResponse.json(
+        {
+          error: "Not found",
+          message: "Device link request not found",
+          code: "NOT_FOUND",
+        },
+        { status: 404 }
+      )
+    }
+
+    // Check if expired
+    if (new Date(deviceLink.expires_at) < new Date()) {
+      await supabaseAdmin
+        .from('device_links')
+        .update({ status: 'expired' })
+        .eq('id', deviceLinkId)
+
+      return NextResponse.json(
+        {
+          status: "expired",
+          message: "This device link request has expired",
+        },
+        { status: 410 }
+      )
+    }
+
+    // Check if approved
+    if (deviceLink.status === 'approved' && deviceLink.user_id) {
+      // Get user info
+      const { data: user } = await supabaseAdmin
+        .from('users')
+        .select('id, email, display_name')
+        .eq('id', deviceLink.user_id)
+        .single()
+
+      const response = {
+        status: "approved" as const,
+        deviceLinkId: deviceLink.id,
+        accessToken: deviceLink.device_token,
+        user: user ? {
+          id: user.id,
+          email: user.email,
+          displayName: user.display_name || user.email,
+        } : undefined,
+      }
+
+      // Clear device token after first retrieval for security
+      await supabaseAdmin
+        .from('device_links')
+        .update({ device_token: null })
+        .eq('id', deviceLinkId)
+
+      console.log("Device link approved - token retrieved:", {
+        deviceLinkId: deviceLink.id,
+        userId: deviceLink.user_id,
+        timestamp: new Date().toISOString(),
+      })
+
+      return NextResponse.json(response, { status: 200 })
+    }
+
+    // Still pending
+    const response = {
       status: "pending" as const,
-      deviceLinkId: deviceLinkId,
-      expiresAt: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
+      deviceLinkId: deviceLink.id,
+      expiresAt: deviceLink.expires_at,
       message: "Waiting for user approval. Go to agiworkforce.com/link-device and enter your code.",
     }
 
     console.log("Device status polled:", {
       deviceLinkId: deviceLinkId,
-      status: mockResponse.status,
+      status: response.status,
       timestamp: new Date().toISOString(),
     })
 
-    return NextResponse.json(mockResponse, { status: 200 })
+    return NextResponse.json(response, { status: 200 })
   } catch (error) {
     console.error("Device status error:", error)
 
