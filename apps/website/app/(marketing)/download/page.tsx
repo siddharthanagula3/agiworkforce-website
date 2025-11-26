@@ -27,7 +27,7 @@ export default function DownloadPage() {
       version: "1.3.0",
       size: "128 MB",
       requirements: "Windows 10 or later (64-bit)",
-      downloadUrl: "#",
+      downloadUrl: "/api/download/windows/latest",
       checksum: "sha256:def456...",
       releaseDate: "November 13, 2025"
     },
