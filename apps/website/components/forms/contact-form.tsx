@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Loader2 } from "lucide-react"
+import { BotDetectionTracker } from "@/lib/bot-detection"
 
 const contactFormSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -17,6 +18,8 @@ const contactFormSchema = z.object({
   company: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
   privacy: z.boolean().refine((val) => val === true, "You must accept the privacy policy"),
+  // Honeypot field - should remain empty
+  website: z.string().optional(),
 })
 
 type ContactFormData = z.infer<typeof contactFormSchema>
@@ -24,6 +27,9 @@ type ContactFormData = z.infer<typeof contactFormSchema>
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [submitStatus, setSubmitStatus] = React.useState<"idle" | "success" | "error">("idle")
+
+  // Bot detection tracker
+  const botTrackerRef = React.useRef<BotDetectionTracker | null>(null)
 
   const {
     register,
@@ -34,20 +40,70 @@ export function ContactForm() {
     resolver: zodResolver(contactFormSchema),
   })
 
+  // Initialize bot detection tracker
+  React.useEffect(() => {
+    botTrackerRef.current = new BotDetectionTracker()
+
+    // Track mouse movements
+    const handleMouseMove = (e: MouseEvent) => {
+      botTrackerRef.current?.trackMouseMove(e)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
+  // Track field focus
+  const handleFieldFocus = () => {
+    botTrackerRef.current?.trackFieldFocus()
+  }
+
+  // Track keypresses
+  const handleKeypress = () => {
+    botTrackerRef.current?.trackKeypress()
+  }
+
+  // Track paste events
+  const handlePaste = () => {
+    botTrackerRef.current?.trackPaste()
+  }
+
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
     setSubmitStatus("idle")
 
     try {
+      // Get bot detection data
+      const botData = botTrackerRef.current?.getDetectionData()
+
+      // Set honeypot value
+      if (botTrackerRef.current) {
+        botTrackerRef.current.setHoneypotValue(data.website || '')
+      }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          botDetection: botData,
+        }),
       })
 
       if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+
+        // Check if blocked for bot-like behavior
+        if (response.status === 400 && errorData.error?.includes('bot')) {
+          setSubmitStatus("error")
+          return
+        }
+
         throw new Error("Failed to submit form")
       }
 
@@ -71,6 +127,9 @@ export function ContactForm() {
             placeholder="John"
             {...register("firstName")}
             disabled={isSubmitting}
+            onFocus={handleFieldFocus}
+            onKeyDown={handleKeypress}
+            onPaste={handlePaste}
           />
           {errors.firstName && (
             <p className="text-sm text-danger-500">{errors.firstName.message}</p>
@@ -84,6 +143,9 @@ export function ContactForm() {
             placeholder="Doe"
             {...register("lastName")}
             disabled={isSubmitting}
+            onFocus={handleFieldFocus}
+            onKeyDown={handleKeypress}
+            onPaste={handlePaste}
           />
           {errors.lastName && (
             <p className="text-sm text-danger-500">{errors.lastName.message}</p>
@@ -99,6 +161,9 @@ export function ContactForm() {
           placeholder="john@example.com"
           {...register("email")}
           disabled={isSubmitting}
+          onFocus={handleFieldFocus}
+          onKeyDown={handleKeypress}
+          onPaste={handlePaste}
         />
         {errors.email && (
           <p className="text-sm text-danger-500">{errors.email.message}</p>
@@ -112,6 +177,21 @@ export function ContactForm() {
           placeholder="Acme Inc."
           {...register("company")}
           disabled={isSubmitting}
+          onFocus={handleFieldFocus}
+          onKeyDown={handleKeypress}
+          onPaste={handlePaste}
+        />
+      </div>
+
+      {/* Honeypot field - hidden from users, bots will fill it */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          type="text"
+          id="website"
+          {...register("website")}
+          tabIndex={-1}
+          autoComplete="off"
         />
       </div>
 
@@ -123,6 +203,9 @@ export function ContactForm() {
           rows={5}
           {...register("message")}
           disabled={isSubmitting}
+          onFocus={handleFieldFocus}
+          onKeyDown={handleKeypress}
+          onPaste={handlePaste}
         />
         {errors.message && (
           <p className="text-sm text-danger-500">{errors.message.message}</p>
