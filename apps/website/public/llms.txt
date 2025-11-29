@@ -1,0 +1,57 @@
+# AGI Workforce
+
+> Autonomous desktop automation platform powered by AI
+
+## Key Features
+- Visual workflow builder for desktop automation
+- Multi-LLM support (OpenAI, Anthropic, Google, Ollama)
+- Browser automation with Playwright
+- Desktop UI automation
+- Free local LLMs via Ollama
+- Built with Tauri + Rust for performance
+- MIT licensed and open source
+
+## Product Info
+- Platform: Desktop (Windows 10/11, macOS planned Q2 2026)
+- Current Version: v0.1.0-alpha (Early Access)
+- Pricing: Currently 100% free (alpha), paid tiers planned Q2 2026
+- License: MIT License
+- Download: https://agiworkforce.com/download
+- GitHub: https://github.com/siddharthanagula3/agiworkforce-desktop
+
+## Pricing Plans (Future - Q2 2026)
+- Free Forever: Unlimited local automation with Ollama
+- Pay-Per-Result: $0.50 per successful automation
+- Pro Unlimited: $39/month for unlimited automations
+- Enterprise: Custom pricing for organizations
+
+## Documentation
+- Features: https://agiworkforce.com/features
+- Pricing: https://agiworkforce.com/pricing
+- Changelog: https://agiworkforce.com/changelog
+- API Docs: https://agiworkforce.com/api/docs (coming soon)
+
+## Technology Stack
+- Frontend: Tauri + React + TypeScript
+- Backend: Rust
+- Automation: Playwright, UI Automation
+- LLMs: OpenAI, Anthropic, Google, Ollama
+- Database: SQLite (local)
+
+## Use Cases
+- Data entry automation
+- Web scraping and data extraction
+- Report generation
+- Email automation
+- CRM data management
+- Spreadsheet processing
+- Document processing
+- Browser testing
+
+## Status
+Solo founder project in active development. Alpha software - expect bugs and breaking changes. No support team. Community support via GitHub Issues only.
+
+## Contact
+- Website: https://agiworkforce.com
+- GitHub Issues: https://github.com/siddharthanagula3/agiworkforce-desktop/issues
+- Email: contact@agiworkforce.com

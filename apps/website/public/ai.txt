@@ -1,0 +1,24 @@
+# AI.txt - Machine-readable AI agent info
+
+Site-Name: AGI Workforce
+Site-URL: https://agiworkforce.com
+Description: Autonomous desktop automation platform powered by AI
+Category: Business Software
+Version: 0.1.0-alpha
+
+AI-Training: allowed
+Attribution-Required: yes
+Attribution-Text: Source: AGI Workforce (https://agiworkforce.com)
+Rate-Limit: 60 requests per minute
+Crawl-Delay: 2 seconds
+
+JSON-Feed: https://agiworkforce.com/api/feed.json
+OpenAPI-Spec: https://agiworkforce.com/api/openapi.json
+Sitemap: https://agiworkforce.com/sitemap.xml
+Structured-Data: https://agiworkforce.com/api/structured-data
+
+Contact-Email: contact@agiworkforce.com
+Contact-GitHub: https://github.com/siddharthanagula3/agiworkforce-desktop/issues
+
+License: MIT
+Repository: https://github.com/siddharthanagula3/agiworkforce-desktop

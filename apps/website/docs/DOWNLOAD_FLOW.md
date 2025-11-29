@@ -82,13 +82,13 @@ Browser downloads installer from:
 
 ```bash
 # GitHub Releases (recommended)
-AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://github.com/yourusername/agiworkforce-desktop-app/releases/download/v1.3.0/AGIWorkforceSetup-1.3.0.exe
+AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://github.com/yourusername/agiworkforce-desktop-app/releases/download/v0.1.0-alpha/AGIWorkforceSetup-0.1.0-alpha.exe
 
 # AWS S3
-AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://downloads.agiworkforce.com.s3.amazonaws.com/windows/AGIWorkforceSetup-1.3.0.exe
+AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://downloads.agiworkforce.com.s3.amazonaws.com/windows/AGIWorkforceSetup-0.1.0-alpha.exe
 
 # Cloudflare R2
-AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://downloads.agiworkforce.com/windows/AGIWorkforceSetup-1.3.0.exe
+AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://downloads.agiworkforce.com/windows/AGIWorkforceSetup-0.1.0-alpha.exe
 
 # Direct file (not recommended for production)
 AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://agiworkforce.com/downloads/AGIWorkforceSetup.exe
@@ -105,7 +105,7 @@ AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://agiworkforce.com/downloads/AGIWorkforceSe
 
 2. Edit `.env.local` and set the URL:
    ```bash
-   AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://github.com/.../AGIWorkforceSetup-1.3.0.exe
+   AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://github.com/.../AGIWorkforceSetup-0.1.0-alpha.exe
    ```
 
 3. Restart the Next.js dev server:
@@ -119,7 +119,7 @@ AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://agiworkforce.com/downloads/AGIWorkforceSe
 
 2. Add variable:
    - **Name**: `AGI_WORKFORCE_WIN_DOWNLOAD_URL`
-   - **Value**: `https://github.com/.../AGIWorkforceSetup-1.3.0.exe`
+   - **Value**: `https://github.com/.../AGIWorkforceSetup-0.1.0-alpha.exe`
    - **Environment**: Production (and Preview if needed)
 
 3. Redeploy the website (or it will auto-deploy on next push)
@@ -143,7 +143,7 @@ AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://agiworkforce.com/downloads/AGIWorkforceSe
    - Button links to `/api/download/windows/latest`
 4. User clicks button
 5. Backend redirects to actual installer URL
-6. Browser downloads installer (e.g., `AGIWorkforceSetup-1.3.0.exe`)
+6. Browser downloads installer (e.g., `AGIWorkforceSetup-0.1.0-alpha.exe`)
 7. User runs installer
 
 ### API Endpoint Behavior
@@ -153,7 +153,7 @@ AGI_WORKFORCE_WIN_DOWNLOAD_URL=https://agiworkforce.com/downloads/AGIWorkforceSe
 **Success Response (302 Redirect)**:
 ```http
 HTTP/1.1 302 Found
-Location: https://github.com/.../AGIWorkforceSetup-1.3.0.exe
+Location: https://github.com/.../AGIWorkforceSetup-0.1.0-alpha.exe
 ```
 
 **Error Response (503 Service Unavailable)**:
@@ -191,7 +191,7 @@ cd agiworkforce-desktop-app
 npm run build
 npm run tauri build
 
-# Output: src-tauri/target/release/bundle/nsis/AGIWorkforceSetup-1.3.0.exe
+# Output: src-tauri/target/release/bundle/nsis/AGIWorkforceSetup-0.1.0-alpha.exe
 ```
 
 #### 2. Upload Installer to Hosting
@@ -200,35 +200,35 @@ npm run tauri build
 
 ```bash
 # Create a new release on GitHub
-gh release create v1.3.0 \
-  --title "AGI Workforce v1.3.0" \
+gh release create v0.1.0-alpha \
+  --title "AGI Workforce v0.1.0-alpha" \
   --notes "Release notes here..." \
-  src-tauri/target/release/bundle/nsis/AGIWorkforceSetup-1.3.0.exe
+  src-tauri/target/release/bundle/nsis/AGIWorkforceSetup-0.1.0-alpha.exe
 
 # Get the download URL
-gh release view v1.3.0 --json assets --jq '.assets[0].url'
-# Output: https://github.com/org/repo/releases/download/v1.3.0/AGIWorkforceSetup-1.3.0.exe
+gh release view v0.1.0-alpha --json assets --jq '.assets[0].url'
+# Output: https://github.com/org/repo/releases/download/v0.1.0-alpha/AGIWorkforceSetup-0.1.0-alpha.exe
 ```
 
 **Option B: AWS S3**
 
 ```bash
-aws s3 cp AGIWorkforceSetup-1.3.0.exe \
+aws s3 cp AGIWorkforceSetup-0.1.0-alpha.exe \
   s3://downloads.agiworkforce.com/windows/ \
   --acl public-read
 
-# URL: https://downloads.agiworkforce.com.s3.amazonaws.com/windows/AGIWorkforceSetup-1.3.0.exe
+# URL: https://downloads.agiworkforce.com.s3.amazonaws.com/windows/AGIWorkforceSetup-0.1.0-alpha.exe
 ```
 
 **Option C: Cloudflare R2**
 
 ```bash
 wrangler r2 object put \
-  downloads/windows/AGIWorkforceSetup-1.3.0.exe \
-  --file=AGIWorkforceSetup-1.3.0.exe \
+  downloads/windows/AGIWorkforceSetup-0.1.0-alpha.exe \
+  --file=AGIWorkforceSetup-0.1.0-alpha.exe \
   --content-type=application/octet-stream
 
-# URL: https://downloads.agiworkforce.com/windows/AGIWorkforceSetup-1.3.0.exe
+# URL: https://downloads.agiworkforce.com/windows/AGIWorkforceSetup-0.1.0-alpha.exe
 ```
 
 #### 3. Update Environment Variable
@@ -253,7 +253,7 @@ Edit `apps/website/app/(marketing)/download/page.tsx`:
 ```typescript
 const versions = {
   windows: {
-    version: "1.3.0",      // Update version number
+    version: "0.1.0-alpha",      // Update version number
     size: "128 MB",        // Update file size
     releaseDate: "November 26, 2025",  // Update date
     checksum: "sha256:abc123...",      // Update checksum
@@ -265,7 +265,7 @@ const versions = {
 Commit and push:
 ```bash
 git add apps/website/app/(marketing)/download/page.tsx
-git commit -m "chore: update Windows installer to v1.3.0"
+git commit -m "chore: update Windows installer to v0.1.0-alpha"
 git push origin main
 ```
 
@@ -420,7 +420,7 @@ curl -I "$AGI_WORKFORCE_WIN_DOWNLOAD_URL"
 
 ```bash
 # Test GitHub release URL
-curl -I https://github.com/org/repo/releases/download/v1.3.0/installer.exe
+curl -I https://github.com/org/repo/releases/download/v0.1.0-alpha/installer.exe
 ```
 
 #### 4. Download Works Locally But Not in Production

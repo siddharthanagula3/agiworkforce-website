@@ -1,4 +1,4 @@
-import { Thing, WithContext, Organization, SoftwareApplication, FAQPage, BreadcrumbList } from 'schema-dts'
+import { Thing, WithContext, Organization, SoftwareApplication, FAQPage, BreadcrumbList, HowTo, Review, Article, Product } from 'schema-dts'
 
 export function getOrganizationSchema(): WithContext<Organization> {
   return {
@@ -91,5 +91,111 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
       name: item.name,
       item: item.url,
     })),
+  }
+}
+
+export function getHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ name: string; text: string; url?: string }>
+): WithContext<HowTo> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      url: step.url,
+    })),
+  }
+}
+
+export function getProductSchema(
+  name: string,
+  description: string,
+  price: string,
+  priceCurrency: string = 'USD'
+): WithContext<Product> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description,
+    brand: {
+      '@type': 'Brand',
+      name: 'AGI Workforce',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: 'https://agiworkforce.com/pricing',
+      priceCurrency,
+      price,
+      availability: 'https://schema.org/InStock',
+    },
+  }
+}
+
+export function getReviewSchema(
+  itemReviewed: string,
+  reviewBody: string,
+  rating: number,
+  author: string
+): WithContext<Review> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'SoftwareApplication',
+      name: itemReviewed,
+    },
+    reviewBody,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: rating.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    author: {
+      '@type': 'Person',
+      name: author,
+    },
+  }
+}
+
+export function getArticleSchema(
+  headline: string,
+  description: string,
+  datePublished: string,
+  dateModified: string,
+  imageUrl?: string
+): WithContext<Article> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description,
+    datePublished,
+    dateModified,
+    author: {
+      '@type': 'Organization',
+      name: 'AGI Workforce',
+      url: 'https://agiworkforce.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AGI Workforce',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://agiworkforce.com/logo.png',
+      },
+    },
+    image: imageUrl ? {
+      '@type': 'ImageObject',
+      url: imageUrl,
+    } : undefined,
   }
 }

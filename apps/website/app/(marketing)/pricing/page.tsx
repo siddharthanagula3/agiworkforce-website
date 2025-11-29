@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { pricingTiers } from "@/config/pricing"
 import { Check, X } from "lucide-react"
@@ -97,14 +98,18 @@ export default function PricingPage() {
         <div className="container">
           <div className="mx-auto max-w-4xl text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Simple, Transparent{" "}
+              Free Now,{" "}
               <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-                Pricing
+                Paid Later
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Start free, upgrade when you&apos;re ready. All plans include 50% off your first month.
+              Currently 100% free (alpha). Future subscription tiers planned for 2026 to fund development and growth.
             </p>
+            <div className="flex items-center justify-center gap-2 pt-2">
+              <Badge variant="secondary">Current: Free Alpha</Badge>
+              <Badge variant="outline">Future: Freemium Model</Badge>
+            </div>
           </div>
         </div>
       </section>
@@ -199,9 +204,44 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-12">
-            All plans include: 14-day free trial • Cancel anytime • No credit card required for trial
-          </p>
+          <div className="mt-16 max-w-3xl mx-auto">
+            <Card className="border-2 bg-muted/20">
+              <CardHeader>
+                <CardTitle className="text-center">Monetization Roadmap</CardTitle>
+                <CardDescription className="text-center">
+                  Transparent business model for sustainable growth
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">Phase 1: Current (2025)</h4>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• 100% free alpha release</li>
+                      <li>• Build user base & gather feedback</li>
+                      <li>• Solo founder development</li>
+                      <li>• Open source community growth</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Phase 2: Monetization (2026)</h4>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>• Launch Pay-Per-Result tier</li>
+                      <li>• Launch Pro subscription ($39/mo)</li>
+                      <li>• Enterprise custom pricing</li>
+                      <li>• Freemium model (free tier remains)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="pt-4 border-t">
+                  <p className="text-sm text-muted-foreground text-center">
+                    <strong>Revenue Strategy:</strong> Freemium SaaS with outcome-based pricing option.
+                    Target: 10% conversion rate from free to paid. ARR potential: $500K-$2M by end of 2026.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 

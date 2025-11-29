@@ -26,38 +26,38 @@ export function HeroSection() {
             <div className="inline-flex animate-fade-in">
               <Badge variant="secondary" className="px-4 py-2 text-sm font-medium hover:bg-secondary/80 transition-colors">
                 <Sparkles className="h-3.5 w-3.5 mr-2 inline" />
-                <span>🎉 NEW: 20+ Pre-Built AI Employees • Deploy in 60 Seconds • Workflow Marketplace Live</span>
+                <span>🚀 Early Access: Desktop Automation Platform • Built with Tauri + Rust • Open Source</span>
               </Badge>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight animate-fade-in-up">
-              Hire{" "}
+              Build Your{" "}
               <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                AI Employees
+                AI Workforce
               </span>
-              {" "}Ready in Minutes
+              {" "}with Desktop Automation
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
-              20+ pre-trained AI employees ready to work instantly. From customer support to code reviews, deploy specialized agents in under 60 seconds.
-              <span className="block mt-2 font-semibold text-foreground">Marketplace with 50+ workflows. Real-time ROI tracking. Pay only for results.</span>
+              Free, open-source desktop automation platform built with Tauri and Rust. Create powerful workflows with visual builders, browser automation, and multi-LLM support.
+              <span className="block mt-2 font-semibold text-foreground">Early access alpha. Use with free Ollama or your own API keys. Active development.</span>
             </p>
 
             {/* Key benefits pills */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm animate-fade-in-up animation-delay-200">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>20+ AI Employees Ready Now</span>
+                <span>Built with Tauri + Rust</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>Deploy in &lt;60 Seconds</span>
+                <span>Visual Workflow Builder</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-success-400" />
-                <span>Viral Workflow Marketplace</span>
+                <span>Multi-LLM Support</span>
               </div>
             </div>
 
@@ -103,49 +103,34 @@ export function HeroSection() {
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <TrendingUp className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">20+</div>
+                  <div className="text-3xl font-bold">100%</div>
                 </div>
-                <p className="text-sm text-muted-foreground">AI Employees Ready</p>
+                <p className="text-sm text-muted-foreground">Free & Open Source</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Clock className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">&lt;60s</div>
+                  <div className="text-3xl font-bold">Alpha</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Deploy Time</p>
+                <p className="text-sm text-muted-foreground">Early Access</p>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center gap-2">
                   <Shield className="h-5 w-5 text-blue-500" />
-                  <div className="text-3xl font-bold">12x</div>
+                  <div className="text-3xl font-bold">MIT</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Average ROI</p>
+                <p className="text-sm text-muted-foreground">License</p>
               </div>
             </div>
 
-            {/* Social Proof - Company logos */}
+            {/* Solo Founder Notice */}
             <div className="pt-12 space-y-4 animate-fade-in-up animation-delay-600">
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                Trusted by teams at leading companies
+                Solo Founder Project • Alpha Software • Use at Your Own Risk
               </p>
-              {/* Placeholder for company logos */}
-              <div className="flex justify-center items-center gap-8 flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all">
-                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
-                  Company A
-                </div>
-                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
-                  Company B
-                </div>
-                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
-                  Company C
-                </div>
-                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
-                  Company D
-                </div>
-                <div className="h-10 w-24 bg-foreground/10 rounded flex items-center justify-center text-xs font-semibold">
-                  Company E
-                </div>
-              </div>
+              <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+                Built by one developer. Expect bugs. No support team. No guarantees. Contributions welcome on GitHub.
+              </p>
             </div>
           </div>
         </div>

@@ -13,8 +13,8 @@ import { NextRequest, NextResponse } from "next/server"
  * - AGI_WORKFORCE_WIN_DOWNLOAD_URL: Full URL to the latest .exe or .msi installer
  *
  * Example URLs:
- * - GitHub Release: https://github.com/org/repo/releases/download/v1.3.0/AGIWorkforceSetup.exe
- * - S3/R2/GCS: https://downloads.agiworkforce.com/windows/AGIWorkforceSetup-1.3.0.exe
+ * - GitHub Release: https://github.com/org/repo/releases/download/v0.1.0-alpha/AGIWorkforceSetup.exe
+ * - S3/R2/GCS: https://downloads.agiworkforce.com/windows/AGIWorkforceSetup-0.1.0-alpha.exe
  * - Direct file: https://agiworkforce.com/downloads/AGIWorkforceSetup.exe
  *
  * Responses:

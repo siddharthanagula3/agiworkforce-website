@@ -41,8 +41,8 @@ export default function FeaturesPage() {
   const features = [
     {
       icon: Users,
-      title: "👥 AI Employee Library (NEW 2026)",
-      description: "20+ pre-trained AI employees ready to deploy in under 60 seconds.",
+      title: "👥 AI Employee Library (In Development)",
+      description: "Pre-trained AI employees for quick deployment (Coming Soon).",
       details: [
         "Instant deployment with zero configuration",
         "20+ specialized roles (Support, Sales, Engineering, etc.)",
@@ -54,8 +54,8 @@ export default function FeaturesPage() {
     },
     {
       icon: Share2,
-      title: "🛒 Workflow Marketplace (NEW 2026)",
-      description: "50+ community workflows with viral sharing to 6+ social platforms.",
+      title: "🛒 Workflow Marketplace (In Development)",
+      description: "Community workflows with social sharing (Coming Soon).",
       details: [
         "One-click install from 50+ curated templates",
         "10M+ total workflow downloads",
@@ -67,8 +67,8 @@ export default function FeaturesPage() {
     },
     {
       icon: TrendingUp,
-      title: "📊 Real-Time ROI Dashboard (NEW 2026)",
-      description: "Live metrics proving value with <250ms update latency.",
+      title: "📊 Real-Time ROI Dashboard (In Development)",
+      description: "Live metrics proving value with real-time updates (Coming Soon).",
       details: [
         "Real-time tracking of time saved, cost saved, automations run",
         "Beautiful charts showing 30-day trends",
@@ -80,8 +80,8 @@ export default function FeaturesPage() {
     },
     {
       icon: DollarSign,
-      title: "💰 Outcome-Based Pricing (NEW 2026)",
-      description: "Pay only for successful results - failed automations are free.",
+      title: "💰 Outcome-Based Pricing (Planned)",
+      description: "Pay only for successful results - free tier available now.",
       details: [
         "$0.50 per successful automation (failures free)",
         "Real-time usage tracking and cost calculator",
@@ -93,8 +93,8 @@ export default function FeaturesPage() {
     },
     {
       icon: MessageSquare,
-      title: "💬 Messaging Platform Integration (NEW 2026)",
-      description: "Work where your team works - Slack, Teams, WhatsApp support.",
+      title: "💬 Messaging Platform Integration (In Development)",
+      description: "Slack, Teams, WhatsApp support (Coming Soon).",
       details: [
         "Slack: Commands, interactive buttons, threaded replies",
         "Microsoft Teams: Cards, adaptive actions, bot mentions",
@@ -119,8 +119,8 @@ export default function FeaturesPage() {
     },
     {
       icon: Brain,
-      title: "🧠 Hybrid LLM Strategy (NEW 2026)",
-      description: "Claude 4.5 Sonnet for planning, Haiku 4.5 for execution - best of both worlds.",
+      title: "🧠 Hybrid LLM Strategy (In Development)",
+      description: "Smart model selection for optimal cost and performance.",
       details: [
         "Sonnet 4.5: 77.2% SWE-bench for complex planning",
         "Haiku 4.5: 4-5x faster for rapid execution",
@@ -132,8 +132,8 @@ export default function FeaturesPage() {
     },
     {
       icon: Database,
-      title: "💾 3-Tier Caching System (NEW 2026)",
-      description: "Response, tool, and codebase caching for instant results.",
+      title: "💾 Advanced Caching System (In Development)",
+      description: "Multi-tier caching for faster responses.",
       details: [
         "Response cache: Instant answers for repeated queries",
         "Tool cache: Pre-computed tool outputs saved",

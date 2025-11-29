@@ -24,28 +24,28 @@ export default function DownloadPage() {
 
   const versions = {
     windows: {
-      version: "1.3.0",
-      size: "128 MB",
+      version: "0.1.0-alpha",
+      size: "~100 MB",
       requirements: "Windows 10 or later (64-bit)",
       downloadUrl: "/api/download/windows/latest",
-      checksum: "sha256:def456...",
-      releaseDate: "November 13, 2025"
+      checksum: "sha256:tbd",
+      releaseDate: "Alpha Development Build"
     },
     macos: {
-      version: "Coming Q2 2025",
+      version: "Coming Q2 2026",
       size: "TBD",
       requirements: "macOS 12 (Monterey) or later",
       downloadUrl: "#",
       checksum: "",
-      releaseDate: "Q2 2025"
+      releaseDate: "Q2 2026"
     },
     linux: {
-      version: "Coming Q2 2025",
+      version: "Coming Q2 2026",
       size: "TBD",
       requirements: "Ubuntu 20.04+ / Debian 11+ / Fedora 35+",
       downloadUrl: "#",
       checksum: "",
-      releaseDate: "Q2 2025"
+      releaseDate: "Q2 2026"
     }
   }
 
@@ -81,7 +81,7 @@ export default function DownloadPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              100% free desktop application. Built with Tauri + Rust for maximum performance. Use with free Ollama or bring your own LLM API keys.
+              100% free desktop application (Alpha). Built with Tauri + Rust for maximum performance. Use with free Ollama or bring your own LLM API keys. Active development in progress.
             </p>
 
             {/* Main Download Button */}
@@ -94,7 +94,7 @@ export default function DownloadPage() {
                   </Link>
                 </Button>
                 <p className="text-sm text-muted-foreground">
-                  Version {versions.windows.version} • {versions.windows.size} • 100% Free Forever
+                  {versions.windows.version} • {versions.windows.size} • Early Access Alpha
                 </p>
               </div>
             ) : (

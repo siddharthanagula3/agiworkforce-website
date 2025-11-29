@@ -83,7 +83,7 @@ export function WhatsNewSection() {
               November 2025 Update
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold">
-              What's New in AGI Workforce
+              What&apos;s New in AGI Workforce
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Major improvements based on competitive analysis and 2026 enterprise requirements. Production-ready features delivered ahead of schedule.

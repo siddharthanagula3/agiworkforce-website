@@ -61,10 +61,10 @@ const supabaseAdmin = createClient(
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { deviceLinkId: string } }
+  { params }: { params: Promise<{ deviceLinkId: string }> }
 ) {
   try {
-    const { deviceLinkId } = params
+    const { deviceLinkId } = await params
 
     if (!deviceLinkId) {
       return NextResponse.json(

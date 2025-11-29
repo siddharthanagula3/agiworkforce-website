@@ -141,7 +141,7 @@ Content-Type: application/json
 {
   "deviceName": "John's Work Laptop",
   "platform": "windows",
-  "appVersion": "1.3.0",
+  "appVersion": "0.1.0-alpha",
   "deviceFingerprint": "abc123-unique-id"
 }
 ```
@@ -151,7 +151,7 @@ Content-Type: application/json
 |-------|------|----------|-------------|
 | `deviceName` | string | Yes | User-friendly name for this device |
 | `platform` | string | Yes | One of: `windows`, `macos`, `linux` |
-| `appVersion` | string | No | Desktop app version (e.g., `1.3.0`) |
+| `appVersion` | string | No | Desktop app version (e.g., `0.1.0-alpha`) |
 | `deviceFingerprint` | string | No | Unique device identifier for security |
 
 **Response (200 OK)**:

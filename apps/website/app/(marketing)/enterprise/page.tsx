@@ -16,17 +16,17 @@ import type { Metadata } from "next"
 import { ContactForm } from "@/components/forms/contact-form"
 
 export const metadata: Metadata = {
-  title: "Enterprise - Scalable Team Automation",
-  description: "Enterprise-grade automation for teams of any size. Deploy securely, manage centrally, automate confidently. SOC 2 compliant with dedicated support.",
+  title: "Roadmap - Future Enterprise Plans",
+  description: "Future enterprise features being considered. Currently in alpha - free for everyone. Built by solo founder.",
   openGraph: {
-    title: "AGI Workforce Enterprise - Scalable Team Automation",
-    description: "Enterprise-grade automation with advanced security, centralized management, and dedicated support. SOC 2 compliant.",
+    title: "AGI Workforce Roadmap - Future Plans",
+    description: "Future enterprise features under consideration. Currently 100% free alpha software.",
     url: "https://agiworkforce.com/enterprise",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AGI Workforce Enterprise - Scalable Team Automation",
-    description: "Enterprise-grade automation with advanced security and dedicated support. SOC 2 compliant.",
+    title: "AGI Workforce Roadmap - Future Plans",
+    description: "Future enterprise features under consideration.",
   },
 }
 
@@ -34,106 +34,106 @@ export default function EnterprisePage() {
   const enterpriseFeatures = [
     {
       icon: Shield,
-      title: "Advanced Security",
-      description: "SOC 2 compliant with enterprise-grade security features.",
+      title: "Advanced Security (Idea)",
+      description: "Potential future security features - not currently available.",
       details: [
-        "SOC 2 Type II certification",
-        "GDPR and CCPA compliance",
-        "On-premise deployment option",
-        "Custom data residency",
-        "Advanced encryption",
-        "Security audit logs"
+        "Security certifications (not yet obtained)",
+        "Compliance features (future consideration)",
+        "On-premise deployment (under research)",
+        "Enhanced encryption (planned)",
+        "Audit logging (in development)",
+        "Note: Currently basic desktop app security only"
       ]
     },
     {
       icon: Users,
-      title: "Centralized Management",
-      description: "Manage your entire team from a single dashboard.",
+      title: "Team Features (Idea)",
+      description: "Multi-user features under consideration - not available yet.",
       details: [
-        "User provisioning and deprovisioning",
-        "Role-based access control (RBAC)",
-        "Team workspaces",
-        "Usage analytics and reporting",
-        "Workflow sharing and templates",
-        "Centralized billing"
+        "Team management (planned)",
+        "Access control (future)",
+        "Shared workspaces (under consideration)",
+        "Analytics (in development)",
+        "Workflow sharing (planned)",
+        "Note: Solo founder - no team features yet"
       ]
     },
     {
       icon: Headphones,
-      title: "Dedicated Support",
-      description: "Get help when you need it with priority support.",
+      title: "Support (Future)",
+      description: "Currently community support only via GitHub Issues.",
       details: [
-        "24/7 priority support",
-        "Dedicated account manager",
-        "Custom onboarding program",
-        "Training sessions for teams",
-        "Direct engineering escalation",
-        "Quarterly business reviews"
+        "Solo founder - no dedicated support team",
+        "GitHub Issues for bug reports",
+        "Community discussions planned",
+        "Documentation in progress",
+        "No SLAs or guarantees",
+        "Best-effort support when available"
       ]
     },
     {
       icon: Puzzle,
-      title: "Custom Integrations",
-      description: "Build custom integrations for your unique workflows.",
+      title: "API & Integrations (Idea)",
+      description: "Future API access under consideration.",
       details: [
-        "REST API access",
-        "Webhook support",
-        "Custom tool development",
-        "SDK and libraries",
-        "Integration consulting",
-        "Private marketplace"
+        "REST API (planned)",
+        "Webhook support (future)",
+        "SDK development (under consideration)",
+        "Plugin system (researching)",
+        "Note: Desktop app only currently",
+        "No timeline for API access"
       ]
     },
     {
       icon: Lock,
-      title: "SSO & Authentication",
-      description: "Integrate with your existing identity provider.",
+      title: "SSO & Auth (Future)",
+      description: "Enterprise authentication - far future consideration.",
       details: [
-        "SAML 2.0 support",
-        "OAuth2 integration",
-        "Active Directory sync",
-        "Azure AD integration",
-        "Okta integration",
-        "Multi-factor authentication"
+        "Currently: local desktop app only",
+        "SAML (not planned yet)",
+        "OAuth2 (under research)",
+        "Directory sync (distant future)",
+        "MFA (basic only)",
+        "Note: Solo founder - no timeline"
       ]
     },
     {
       icon: BarChart,
-      title: "Advanced Analytics",
-      description: "Deep insights into automation usage and ROI.",
+      title: "Analytics (Planned)",
+      description: "Usage analytics being considered.",
       details: [
-        "Custom dashboards",
-        "Cost analytics",
-        "Performance metrics",
-        "Usage trends",
-        "ROI calculations",
-        "Export capabilities"
+        "Basic tracking (in development)",
+        "Dashboards (future)",
+        "Cost tracking (planned)",
+        "Performance metrics (idea)",
+        "ROI calculations (distant future)",
+        "Note: No analytics currently"
       ]
     },
     {
       icon: Clock,
-      title: "SLA Guarantees",
-      description: "99.9% uptime with guaranteed response times.",
+      title: "Reliability (No SLA)",
+      description: "Alpha software - no guarantees.",
       details: [
-        "99.9% uptime SLA",
-        "Priority incident response",
-        "Scheduled maintenance windows",
-        "Proactive monitoring",
-        "Disaster recovery",
-        "Performance guarantees"
+        "No SLA - alpha software",
+        "No uptime guarantees",
+        "Desktop app - runs locally",
+        "Best-effort stability",
+        "Bugs expected",
+        "Use at your own risk"
       ]
     },
     {
       icon: Globe,
-      title: "Global Deployment",
-      description: "Deploy in your preferred regions worldwide.",
+      title: "Multi-Platform (Planned)",
+      description: "macOS and Linux support in development.",
       details: [
-        "Multi-region support",
-        "Data residency options",
-        "Edge deployment",
-        "Private cloud hosting",
-        "Hybrid deployment",
-        "Air-gapped environments"
+        "Windows only currently",
+        "macOS support (Q2 2026 target)",
+        "Linux support (Q2 2026 target)",
+        "Cloud deployment (distant future)",
+        "No timeline confirmed",
+        "Solo founder - slow progress"
       ]
     }
   ]
@@ -157,20 +157,20 @@ export default function EnterprisePage() {
         <div className="container relative z-10">
           <div className="mx-auto max-w-4xl text-center space-y-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              AGI Workforce for{" "}
+              Future{" "}
               <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-                Enterprise
+                Enterprise Plans
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Scalable automation for teams of any size. Deploy securely, manage centrally, automate confidently.
+              Potential enterprise features under consideration. Currently in alpha - 100% free for everyone. Built by solo founder.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="xl" asChild>
-                <Link href="#contact">Schedule Enterprise Demo</Link>
+                <Link href="/download">Download Free Alpha</Link>
               </Button>
               <Button size="xl" variant="outline" asChild>
-                <Link href="/pricing">View All Plans</Link>
+                <Link href="https://github.com/siddharthanagula3/agiworkforce-desktop-app">Star on GitHub</Link>
               </Button>
             </div>
           </div>
@@ -182,10 +182,10 @@ export default function EnterprisePage() {
         <div className="container">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              Enterprise Features
+              Potential Future Features
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything in Pro, plus enterprise-grade features for large teams
+              Ideas being considered for future releases - no promises or timeline. Software is currently free and in alpha.
             </p>
           </div>
 
@@ -225,88 +225,80 @@ export default function EnterprisePage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Why Enterprise Teams Choose AGI Workforce
+              Current Reality: Solo Founder Project
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
-                  <span className="text-lg">{benefit}</span>
-                </div>
-              ))}
+              <div className="flex items-start gap-3">
+                <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
+                <span className="text-lg">100% free alpha software</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
+                <span className="text-lg">Built by solo founder</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
+                <span className="text-lg">Open source on GitHub</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
+                <span className="text-lg">MIT licensed</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
+                <span className="text-lg">Community support via GitHub</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="h-6 w-6 text-success-400 shrink-0 mt-0.5" />
+                <span className="text-lg">Early alpha - expect bugs</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-20">
+      {/* Current Status */}
+      <section className="py-20 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold">
-              Custom Pricing for Your Team
+              No Pricing - It&apos;s Free
             </h2>
             <p className="text-lg text-muted-foreground">
-              Enterprise pricing is customized based on your needs including number of seats, support level, deployment requirements, and custom integrations.
+              Currently in alpha. 100% free. Built by solo founder. No enterprise team, no sales team, no support team.
             </p>
 
             <Card className="border-2 max-w-xl mx-auto">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Contact Sales</CardTitle>
+                <CardTitle className="text-2xl">Download & Contribute</CardTitle>
                 <CardDescription className="text-base">
-                  Get a custom quote tailored to your organization
+                  Free alpha software - try it, report bugs, contribute code
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <Check className="h-5 w-5 text-success-400 shrink-0 mt-0.5" />
-                    <span>Custom pricing based on your needs</span>
+                    <span>100% free - no payment ever</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="h-5 w-5 text-success-400 shrink-0 mt-0.5" />
-                    <span>Volume discounts for large teams</span>
+                    <span>Open source MIT license</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="h-5 w-5 text-success-400 shrink-0 mt-0.5" />
-                    <span>Flexible payment terms</span>
+                    <span>Report bugs on GitHub</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="h-5 w-5 text-success-400 shrink-0 mt-0.5" />
-                    <span>Annual contracts available</span>
+                    <span>Contributions welcome</span>
                   </li>
                 </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section id="contact" className="py-20 bg-muted/30">
-        <div className="container">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Schedule Your Enterprise Demo
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Fill out the form below and our enterprise team will contact you within 24 hours.
-              </p>
-            </div>
-
-            <Card className="border-2">
-              <CardContent className="pt-6">
-                <ContactForm />
-                <div className="mt-8 pt-8 border-t text-center space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    For immediate assistance, contact our enterprise team:
-                  </p>
-                  <div className="space-y-2">
-                    <p className="font-medium">enterprise@agiworkforce.com</p>
-                    <p className="font-medium">+1 (555) 123-4567</p>
-                  </div>
+                <div className="pt-4">
+                  <Button asChild className="w-full" size="lg">
+                    <Link href="/download">Download Free Alpha</Link>
+                  </Button>
                 </div>
               </CardContent>
             </Card>

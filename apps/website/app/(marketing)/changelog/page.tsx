@@ -20,144 +20,45 @@ export const metadata: Metadata = {
 export default function ChangelogPage() {
   const releases = [
     {
-      version: "v1.2.0",
-      date: "March 15, 2025",
+      version: "v0.1.0-alpha",
+      date: "November 2025",
       categories: [
         {
-          name: "New Features",
+          name: "Current Features",
           badge: "primary",
           items: [
-            "Added support for macOS automation",
-            "Introduced workflow templates marketplace",
-            "Real-time collaboration on workflows",
-            "New visual debugging interface",
-            "Integration with Slack and Microsoft Teams"
-          ]
-        },
-        {
-          name: "Improvements",
-          badge: "secondary",
-          items: [
-            "Reduced memory usage by 30%",
-            "Faster browser automation startup (50% improvement)",
-            "Enhanced OCR accuracy with new models",
-            "Improved error messages and logging",
-            "Better workflow performance monitoring"
-          ]
-        },
-        {
-          name: "Bug Fixes",
-          badge: "default",
-          items: [
-            "Fixed crash when scheduling automations with complex cron expressions",
-            "Resolved UI element caching issues on Windows 11",
-            "Corrected cost tracking for Anthropic API calls",
-            "Fixed memory leak in long-running browser sessions",
-            "Resolved workflow export/import issues"
-          ]
-        },
-        {
-          name: "Security",
-          badge: "destructive",
-          items: [
-            "Updated dependencies to patch CVE-2025-1234",
-            "Enhanced credential encryption with additional key derivation",
-            "Added support for hardware security keys",
-            "Improved audit logging"
-          ]
-        }
-      ]
-    },
-    {
-      version: "v1.1.0",
-      date: "February 1, 2025",
-      categories: [
-        {
-          name: "New Features",
-          badge: "primary",
-          items: [
-            "Added Google Gemini LLM support",
-            "New file watcher triggers for automations",
-            "Workflow version control and rollback",
-            "Export workflows as standalone executables",
-            "Added webhook triggers"
-          ]
-        },
-        {
-          name: "Improvements",
-          badge: "secondary",
-          items: [
-            "Improved Ollama model download experience",
-            "Better error handling in browser automation",
-            "Enhanced workflow editor with undo/redo",
-            "Faster workflow execution engine"
-          ]
-        },
-        {
-          name: "Bug Fixes",
-          badge: "default",
-          items: [
-            "Fixed issue with database connections timing out",
-            "Resolved OAuth2 token refresh problems",
-            "Fixed UI element detection on high-DPI displays",
-            "Corrected timezone handling in scheduled tasks"
-          ]
-        }
-      ]
-    },
-    {
-      version: "v1.0.0",
-      date: "January 15, 2025",
-      categories: [
-        {
-          name: "New Features",
-          badge: "primary",
-          items: [
-            "🎉 Initial public release",
-            "Visual workflow builder with 15+ tools",
-            "Multi-LLM support (OpenAI, Anthropic, Ollama)",
+            "🚀 Early access alpha release",
+            "Desktop automation framework (Windows only)",
+            "Visual workflow builder (basic)",
             "Browser automation with Playwright",
-            "Desktop UI automation for Windows",
-            "Database integrations (SQLite, PostgreSQL, MySQL, MongoDB)",
-            "REST API integrations",
-            "OCR and vision capabilities",
-            "Scheduling and triggers",
-            "Cost tracking and analytics"
+            "Desktop UI automation for Windows apps",
+            "Multi-LLM support (OpenAI, Anthropic, Google, Ollama)",
+            "Free local LLM support via Ollama",
+            "Built with Tauri + Rust for performance",
+            "MIT licensed - 100% free and open source"
           ]
         },
         {
-          name: "Security",
+          name: "Known Issues",
           badge: "destructive",
           items: [
-            "Windows Credential Manager integration",
-            "DPAPI encryption for API keys",
-            "SOC 2 Type II certification",
-            "GDPR compliance"
-          ]
-        }
-      ]
-    },
-    {
-      version: "v0.9.0 Beta",
-      date: "December 1, 2024",
-      categories: [
-        {
-          name: "New Features",
-          badge: "primary",
-          items: [
-            "Public beta release",
-            "Added Anthropic Claude support",
-            "Workflow templates library",
-            "Community forum integration"
+            "Alpha software - expect bugs",
+            "Windows 10/11 only (macOS/Linux in development)",
+            "Limited documentation",
+            "No official support - community only",
+            "Features are actively being developed"
           ]
         },
         {
-          name: "Bug Fixes",
-          badge: "default",
+          name: "Coming Soon",
+          badge: "secondary",
           items: [
-            "Various stability improvements",
-            "Fixed installation issues on Windows 10",
-            "Improved error reporting"
+            "AI employee library (in development)",
+            "Workflow marketplace (planned)",
+            "ROI dashboard (planned)",
+            "macOS and Linux support (Q2 2026)",
+            "Slack/Teams integration (planned)",
+            "Better documentation and tutorials"
           ]
         }
       ]
@@ -235,13 +136,9 @@ export default function ChangelogPage() {
 
           <div className="mt-12 text-center">
             <p className="text-muted-foreground">
-              Subscribe to our{" "}
-              <a href="/blog" className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
-                blog
-              </a>{" "}
-              or{" "}
-              <a href="/rss" className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
-                RSS feed
+              Follow development on{" "}
+              <a href="https://github.com/siddharthanagula3/agiworkforce-desktop-app" className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                GitHub
               </a>{" "}
               to stay updated on new releases.
             </p>
