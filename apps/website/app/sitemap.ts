@@ -1,8 +1,19 @@
 import { MetadataRoute } from 'next'
+import { getAllPostsMetadata } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://agiworkforce.com'
   const currentDate = new Date()
+
+  // Get all blog posts
+  const blogPosts = getAllPostsMetadata()
+
+  const blogEntries = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
 
   return [
     // Main pages
@@ -59,6 +70,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
+    },
+
+    // Blog
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
 
     // API Documentation
@@ -121,6 +140,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.5,
+    },
+
+    // Blog posts (dynamically generated)
+    ...blogEntries,
+
+    // Blog RSS feed
+    {
+      url: `${baseUrl}/blog/rss.xml`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.6,
     },
   ]
 }
