@@ -63,3 +63,6 @@ export const config = {
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
+
+// Supabase SSR helpers rely on Node APIs; ensure the middleware runs in the Node.js runtime.
+export const runtime = 'nodejs'

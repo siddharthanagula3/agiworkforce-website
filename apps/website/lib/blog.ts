@@ -73,6 +73,19 @@ export function getPostBySlug(slug: string): BlogPost | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
+    let image: string | undefined = data.image
+
+    // Avoid broken images by checking local assets before surfacing them
+    if (image && !image.startsWith('http')) {
+      const normalizedImagePath = image.startsWith('/')
+        ? path.join(process.cwd(), 'public', image.replace(/^\//, ''))
+        : path.join(process.cwd(), image)
+
+      if (!fs.existsSync(normalizedImagePath)) {
+        image = undefined
+      }
+    }
+
     return {
       slug,
       title: data.title || 'Untitled',
@@ -82,7 +95,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       author: data.author || 'AGI Workforce Team',
       category: data.category || 'Uncategorized',
       tags: data.tags || [],
-      image: data.image,
+      image,
       readingTime: calculateReadingTime(content),
       featured: data.featured || false,
     }

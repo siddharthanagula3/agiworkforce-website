@@ -11,7 +11,13 @@ export const revalidate = 3600
 
 export async function GET() {
   const posts = getAllPosts().slice(0, 50) // Latest 50 posts
-  const baseUrl = 'https://agiworkforce.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://agiworkforce.com'
+
+  const toAbsolute = (url?: string) => {
+    if (!url) return undefined
+    if (url.startsWith('http')) return url
+    return `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`
+  }
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -39,7 +45,7 @@ export async function GET() {
       <author>contact@agiworkforce.com (${post.author})</author>
       <category>${post.category}</category>
       ${post.tags.map((tag) => `<category>${tag}</category>`).join('\n      ')}
-      ${post.image ? `<enclosure url="${post.image}" type="image/jpeg"/>` : ''}
+      ${toAbsolute(post.image) ? `<enclosure url="${toAbsolute(post.image)}" type="image/jpeg"/>` : ''}
       <content:encoded><![CDATA[
         ${post.content}
       ]]></content:encoded>

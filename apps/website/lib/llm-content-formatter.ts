@@ -56,8 +56,8 @@ export function htmlToMarkdown(html: string): string {
     // Links
     .replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)')
     // Lists
-    .replace(/<ul[^>]*>(.*?)<\/ul>/gis, '$1')
-    .replace(/<ol[^>]*>(.*?)<\/ol>/gis, '$1')
+    .replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, '$1')
+    .replace(/<ol[^>]*>([\s\S]*?)<\/ol>/gi, '$1')
     .replace(/<li[^>]*>(.*?)<\/li>/gi, '- $1\n')
     // Paragraphs
     .replace(/<p[^>]*>(.*?)<\/p>/gi, '$1\n\n')

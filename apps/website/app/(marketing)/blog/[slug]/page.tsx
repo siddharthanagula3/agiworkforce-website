@@ -5,11 +5,12 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog'
 import { getArticleSchema } from '@/lib/structured-data'
+import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Calendar, Clock, ArrowLeft, ArrowRight, User } from 'lucide-react'
+import { Calendar, Clock, ArrowLeft, ArrowRight, User, Sparkles } from 'lucide-react'
 
-interface BlogPostPageProps {
+type BlogPostPageProps = {
   params: Promise<{ slug: string }>
 }
 
@@ -77,8 +78,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <div className="min-h-screen">
         {/* Header */}
-        <div className="border-b bg-muted/30">
-          <div className="container py-8">
+        <div className="relative overflow-hidden border-b bg-gradient-to-br from-primary/10 via-background to-background">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.18),transparent_40%),radial-gradient(circle_at_85%_15%,rgba(244,114,182,0.14),transparent_35%)]" />
+          <div className="container relative py-10 md:py-14">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
@@ -87,8 +89,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               Back to Blog
             </Link>
 
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="max-w-3xl space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  <Sparkles className="h-3 w-3" />
+                  Article
+                </Badge>
                 <Badge>{post.category}</Badge>
                 {post.tags.slice(0, 3).map((tag) => (
                   <Badge key={tag} variant="outline">
@@ -97,10 +103,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
-              <p className="text-xl text-muted-foreground mb-6">{post.description}</p>
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">{post.title}</h1>
+              <p className="text-xl text-muted-foreground">{post.description}</p>
 
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   {post.author}
@@ -126,12 +132,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {post.image && (
           <div className="border-b">
             <div className="container py-8">
-              <div className="max-w-4xl mx-auto">
-                <img
+              <div className="relative max-w-4xl mx-auto overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent pointer-events-none" />
+                <Image
                   src={post.image}
                   alt={post.title}
-                  className="w-full rounded-lg"
+                  width={1200}
+                  height={630}
+                  className="h-auto w-full object-cover"
+                  priority
                 />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!post.image && (
+          <div className="border-b bg-muted/30">
+            <div className="container py-8">
+              <div className="max-w-4xl mx-auto rounded-xl border bg-gradient-to-br from-primary/5 via-background to-background p-6">
+                <p className="text-sm text-muted-foreground mb-2">In this article</p>
+                <p className="text-lg font-semibold">{post.description}</p>
               </div>
             </div>
           </div>
@@ -140,7 +161,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Content */}
         <div className="container py-12">
           <div className="max-w-3xl mx-auto">
-            <article className="prose prose-lg dark:prose-invert max-w-none">
+            <article className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-m-20 prose-pre:bg-muted/60 prose-li:marker:text-primary">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
             </article>
 
